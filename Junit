@@ -1,0 +1,24 @@
+JUnit is a testing framework for Java used to write and run unit tests (small tests for individual pieces of code)
+specially to check the working of the classess we use Junit is that working as i excepted to or as i coded to check all these 
+we write unit test case we can sleep peacefully that my code works 100% write.
+
+It helps you:
+Catch bugs early
+Refactor safely
+Write cleaner, modular code
+
+
+JUnit 5 is split into 3 main parts:
+
+JUnit Platform
+JUnit Jupiter (your @Test)
+Test Engine
+
+1. Launcher starts everything
+
+Execution begins with the Launcher API:
+
+Entry point: Launcher
+Created using LauncherFactory
+
+This is what IDEs (like IntelliJ/Eclipse) or build tools (Maven/Gradle) call.
