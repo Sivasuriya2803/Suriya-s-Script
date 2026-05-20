@@ -1,0 +1,334 @@
+1. How Spring Boot Works
+
+When a frontend/mobile app sends request:
+
+Client → Controller → Service → Repository → Database
+
+Example:
+
+POST /expenses
+
+Flow:
+
+ExpenseController
+    ↓
+ExpenseService
+    ↓
+ExpenseRepository
+    ↓
+MySQL Database
+
+
+Important Dependecies
+
+1. Spring Web
+Purpose
+
+Used to build REST APIs and web applications.
+
+What it provides
+HTTP request handling (GET, POST, etc.)
+REST controllers
+JSON conversion
+Embedded server like Tomcat
+If your app exposes APIs or web endpoints, you need this.
+
+2. Spring Data JPA
+Used to interact with databases using Java objects instead of writing lots of SQL manually.
+
+What it provides
+ORM support (via Hibernate)
+Repository pattern
+CRUD operations
+Automatic query generation
+
+Makes database operations much easier and cleaner.
+
+3. MySQL Connector/J
+Purpose
+
+Allows your Java application to connect to a MySQL database.
+
+What it provides
+JDBC driver implementation
+Communication between Spring Boot and MySQL
+Database connectivity.
+
+4. Project Lombok
+Reduces boilerplate Java code.
+What it provides
+
+Automatically generates:
+
+getters/setters
+constructors
+toString()
+equals() and hashCode()
+
+Makes code shorter and cleaner.
+
+
+Annotations
+1. Core Spring Boot Annotations
+@SpringBootApplication
+
+Main entry point of a Spring Boot app.
+
+@SpringBootApplication
+public class App {
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+}
+
+It combines:
+
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+@Configuration
+
+Marks a class as a configuration class.
+
+@Configuration
+public class AppConfig {
+}
+@Bean
+
+Creates and manages an object as a Spring Bean.
+
+@Bean
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+2. Dependency Injection Annotations
+@Component
+
+Generic Spring-managed bean.
+
+@Component
+public class MyComponent {
+}
+@Service
+
+Used for service/business logic classes.
+
+@Service
+public class UserService {
+}
+@Repository
+
+Used for DAO/repository classes.
+
+@Repository
+public class UserDao {
+}
+@Controller
+
+Used in MVC web applications.
+
+@Controller
+public class HomeController {
+}
+@RestController
+
+Used for REST APIs.
+
+@RestController
+public class ApiController {
+}
+
+Equivalent to:
+
+@Controller + @ResponseBody
+@Autowired
+
+Injects dependencies automatically.
+
+@Autowired
+private UserService service;
+
+Constructor injection is preferred nowadays.
+
+3. REST API Annotations
+@RequestMapping
+
+Maps URLs.
+
+@RequestMapping("/users")
+@GetMapping
+
+Handles GET requests.
+
+@GetMapping("/users")
+@PostMapping
+
+Handles POST requests.
+
+@PostMapping("/users")
+@PutMapping
+
+Handles PUT requests.
+
+@PutMapping("/users/{id}")
+@DeleteMapping
+
+Handles DELETE requests.
+
+@DeleteMapping("/users/{id}")
+@PathVariable
+
+Reads values from URL path.
+
+@GetMapping("/users/{id}")
+public User get(@PathVariable Long id)
+@RequestParam
+
+Reads query parameters.
+
+@GetMapping("/search")
+public String search(@RequestParam String name)
+@RequestBody
+
+Reads JSON request body.
+
+@PostMapping
+public void save(@RequestBody User user)
+@ResponseBody
+
+Converts return value into JSON/text response.
+
+4. Spring Data JPA Annotations
+@Entity
+
+Marks a class as a database entity.
+
+@Entity
+public class User {
+}
+@Table
+
+Specifies table name.
+
+@Table(name = "users")
+@Id
+
+Primary key field.
+
+@Id
+private Long id;
+@GeneratedValue
+
+Auto-generates IDs.
+
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column
+
+Customizes column mapping.
+
+@Column(name = "user_name")
+@Transient
+
+Ignores field from DB mapping.
+
+@Transient
+private String temp;
+5. Relationship Annotations (JPA)
+@OneToOne
+@OneToOne
+@OneToMany
+@OneToMany
+@ManyToOne
+@ManyToOne
+@ManyToMany
+@ManyToMany
+@JoinColumn
+
+Defines foreign key column.
+
+@JoinColumn(name = "department_id")
+6. Validation Annotations
+
+From Jakarta Validation / Hibernate Validator.
+
+@NotNull
+@NotNull
+@NotBlank
+@NotBlank
+@Size
+@Size(min = 3, max = 20)
+@Email
+@Email
+@Valid
+
+Triggers validation.
+
+public void save(@Valid @RequestBody User user)
+7. Lombok Annotations
+
+From Project Lombok.
+
+@Getter / @Setter
+@Getter
+@Setter
+@Data
+
+Generates:
+
+getters/setters
+toString
+equals/hashCode
+@Data
+@NoArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@AllArgsConstructor
+@Builder
+
+Builder pattern support.
+
+@Builder
+8. Transaction & Async
+@Transactional
+
+Manages database transactions.
+
+@Transactional
+@EnableTransactionManagement
+
+Enables transaction support.
+
+@Async
+
+Runs methods asynchronously.
+
+@Async
+9. Exception Handling
+@ExceptionHandler
+
+Handles specific exceptions.
+
+@ExceptionHandler(Exception.class)
+@ControllerAdvice
+
+Global exception handling.
+
+@ControllerAdvice
+10. Configuration Properties
+@Value
+
+Reads property values.
+
+@Value("${server.port}")
+@ConfigurationProperties
+
+Maps config properties to Java object.
+
+@ConfigurationProperties(prefix = "app")
+Most Frequently Used in Real Projects
+
+
+
+***************************************** important****************************
+ if we have exactly one constructor the spring automatically uses it for Dependencies Injection we don't need Autowired
+@Bean Annotation used only inside @Configuration Annotation when we manually create Objects
