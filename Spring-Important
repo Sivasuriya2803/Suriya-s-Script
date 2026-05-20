@@ -1,0 +1,69 @@
+***************************************** important****************************
+ if we have exactly one constructor the spring automatically uses it for Dependencies Injection we don't need Autowired
+@Bean Annotation used only inside @Configuration Annotation when we manually create Objects
+
+
+Because final fields in Java must be initialized exactly once — either:
+
+at declaration, or
+inside a constructor.
+
+But field injection with @Autowired happens after the object is created.
+
+So this will fail:
+
+@Service
+public class ExpenseService {
+
+    @Autowired
+    private final ExpenseRepository repository;
+}
+
+The compiler complains because:
+
+final requires initialization during construction
+but Spring tries to inject later using reflection
+Why Constructor Injection Works with final
+@Service
+public class ExpenseService {
+
+    private final ExpenseRepository repository;
+
+    public ExpenseService(ExpenseRepository repository) {
+        this.repository = repository;
+    }
+}
+
+Here:
+
+constructor runs during object creation
+final field gets initialized immediately
+Java is satisfied
+
+This is why constructor injection is the preferred modern approach in Spring Framework.
+
+Timeline Difference
+Field Injection (@Autowired on field)
+Step 1
+
+Java creates object:
+
+new ExpenseService()
+Step 2
+
+Spring injects dependency afterward.
+
+Problem:
+final field was never initialized during construction.
+
+Constructor Injection
+Step 1
+
+Spring calls:
+
+new ExpenseService(repository)
+Step 2
+
+Constructor initializes final field immediately.
+
+No issue.
