@@ -1,0 +1,1586 @@
+what is a coding assistent?
+
+Coding assistants use language models to complete different tasks
+Language models need tools to handle most real-world programming tasks
+Not all language models use tools with the same skill level
+Claude's strong tool use enables better security, customization, and longevity in Claude Code
+This tool-use capability is what transforms a simple text-generating model into a powerful coding assistant that can read your files, understand your codebase, and make meaningful changes to your projects.
+
+
+
+
+The Big Idea
+
+AI coding assistants have a limited context window. If you give them too much unrelated code, their performance drops. The goal is to provide:
+
+✅ Relevant files
+✅ Important architecture information
+✅ Project-specific instructions
+
+while avoiding unnecessary context.
+
+1. /init Command
+
+When you start working on a new project, run:
+
+/init
+What it does
+
+Claude scans your codebase and learns:
+
+What the project does
+Project architecture
+Important files
+Build/test commands
+Coding conventions
+Common patterns
+Result
+
+Claude creates a file:
+
+CLAUDE.md
+
+This file becomes a permanent guide for future conversations.
+
+Think of /init as:
+
+"Create a manual so you don't have to explain my project every time."
+
+2. What is CLAUDE.md?
+
+CLAUDE.md is essentially a project memory file.
+
+Every time Claude receives a request, it automatically reads this file first.
+
+It contains:
+Project information
+
+Example:
+
+# Project Overview
+
+This is a Next.js SaaS application.
+
+## Commands
+
+npm run dev
+npm run test
+
+## Architecture
+
+Frontend: Next.js
+Backend: Express
+Database: PostgreSQL
+Custom instructions
+
+Example:
+
+Use comments sparingly.
+Prefer functional React components.
+Avoid creating unnecessary abstractions.
+
+This makes Claude behave consistently across sessions.
+
+3. Three Types of CLAUDE Memory Files
+A. Project Memory
+CLAUDE.md
+
+Stored in project root.
+
+Purpose:
+
+Shared with team
+Committed to Git
+Documents project-wide instructions
+
+Example:
+
+my-app/
+ ├─ CLAUDE.md
+ ├─ src/
+ └─ package.json
+B. Personal Project Memory
+CLAUDE.local.md
+
+Purpose:
+
+Only for you
+Not committed to Git
+Personal preferences
+
+Example:
+
+Explain complex changes before editing.
+Always suggest tests.
+
+Your teammates won't see these instructions.
+
+C. Global Memory
+~/.claude/CLAUDE.md
+
+Purpose:
+
+Applies to every project
+Machine-wide preferences
+
+Example:
+
+Prefer TypeScript.
+Use concise explanations.
+Avoid excessive comments.
+
+Every project inherits these instructions.
+
+4. Updating Claude's Behavior
+
+If Claude repeatedly does something you dislike, update the memory.
+
+Example:
+
+Claude writes too many comments.
+
+Add:
+
+Use comments sparingly.
+Only comment complex code.
+
+Now Claude will remember this in future chats.
+
+Instead of repeatedly saying:
+
+"Don't add so many comments"
+
+you teach it once.
+
+5. /memory Command
+
+You can edit memory files directly.
+
+Run:
+
+/memory
+
+Claude opens the memory file for editing.
+
+After saving changes:
+
+New instructions apply immediately
+Future conversations follow them
+
+Think of it as:
+
+"Editing Claude's operating manual."
+
+6. Using @ to Include Files
+
+Sometimes Claude only needs one or two files.
+
+Use:
+
+@filename
+
+Example:
+
+How does authentication work?
+
+@auth
+
+Claude will:
+
+Find matching auth files
+Let you choose
+Load them into context
+
+This is better than:
+
+Please search my entire codebase...
+
+because it gives Claude only relevant information.
+
+7. Referencing Files Inside CLAUDE.md
+
+You can permanently attach important files.
+
+Example:
+
+The database schema is defined in:
+
+@prisma/schema.prisma
+
+Reference it whenever you need to understand the data model.
+
+Now every request automatically includes the schema.
+
+Benefits:
+
+Claude instantly understands tables
+Knows relationships
+Understands data structure
+
+without searching every time.
+
+8. Importing Existing Documentation
+
+Suppose your repo already contains:
+
+AGENTS.md
+
+Instead of copying instructions into CLAUDE.md:
+
+@AGENTS.md
+
+Additional Claude-specific instructions here...
+
+Claude loads:
+
+AGENTS.md
+Then your Claude-specific rules
+
+This avoids duplicate documentation.
+
+Practical Workflow
+
+A good workflow looks like this:
+
+Step 1
+
+Run:
+
+/init
+
+Generate project memory.
+
+Step 2
+
+Edit CLAUDE.md
+
+Add:
+
+Prefer TypeScript.
+Use comments sparingly.
+Run tests after changes.
+Step 3
+
+Reference important files:
+
+@prisma/schema.prisma
+@docs/architecture.md
+Step 4
+
+When asking questions, include relevant files:
+
+Why is login failing?
+
+@src/auth/login.ts
+@src/auth/session.ts
+Step 5
+
+Let Claude work with focused context instead of the entire repository.
+
+Mental Model
+
+Think of Claude's context like a backpack.
+
+Too little information → Claude gets confused.
+Too much information → Claude gets overloaded.
+The right information → Claude performs best.
+
+The tools help manage that balance:
+
+Feature	Purpose
+/init	Creates project memory
+CLAUDE.md	Shared project instructions
+CLAUDE.local.md	Personal instructions
+~/.claude/CLAUDE.md	Global instructions
+/memory	Edit memory files
+@file	Load specific files
+@file in CLAUDE.md	Always include important files
+@AGENTS.md	Reuse existing instructions
+
+Key takeaway: Treat CLAUDE.md as a persistent system prompt for your project, and use @file references to give Claude exactly the context it needs. This leads to more accurate answers, better code changes, and less repeated explanation
+
+
+
+The Big Picture
+
+When modifying an existing project, Claude needs help in two areas:
+
+Understanding what you want → Use screenshots.
+Understanding how complex the task is → Use Planning Mode and Effort levels.
+
+Think of it like this:
+
+Problem	Tool
+"Change this button/UI element"	Screenshot
+"Understand the whole feature before coding"	Planning Mode
+"Solve a difficult bug/logic problem"	Higher Effort
+"Need both broad understanding and deep reasoning"	Planning + Higher Effort
+1. Using Screenshots
+
+Sometimes explaining a UI change with words is difficult.
+
+Instead of saying:
+
+Make the login button look better.
+
+Show a screenshot and say:
+
+Move this button below the form and make it green.
+
+How to paste screenshots
+
+Use:
+
+Ctrl + V
+
+Even on macOS, Claude Code uses:
+
+Ctrl + V
+
+for screenshots.
+
+Why screenshots help
+
+Claude can see:
+
+Layout issues
+Spacing problems
+Visual bugs
+Colors
+Typography
+Positioning
+
+Example:
+
+Before:
+
+[ Username ]
+[ Password ]
+
+[ Login ]
+
+You send a screenshot and ask:
+
+Move Login to the right side and increase spacing.
+
+Claude understands exactly which element you're talking about.
+
+2. Planning Mode (/plan)
+
+Planning Mode is for tasks that require understanding many files before coding.
+
+Enable it with:
+
+/plan
+
+or
+
+Shift + Tab twice
+What happens in Planning Mode?
+
+Instead of immediately editing files, Claude:
+
+Step 1
+
+Explores the codebase.
+
+Reads:
+
+Related files
+Components
+APIs
+Configurations
+Dependencies
+Step 2
+
+Creates a detailed plan.
+
+Example:
+
+1. Update User model
+2. Add migration
+3. Modify API endpoint
+4. Update frontend form
+5. Add validation
+6. Add tests
+Step 3
+
+Shows you the plan.
+
+Nothing is changed yet.
+
+Step 4
+
+Waits for approval.
+
+You can review the approach before Claude touches code.
+
+Why Planning Mode is useful
+
+Without planning:
+
+Prompt
+   ↓
+Code Changes
+
+Claude may miss something.
+
+With planning:
+
+Prompt
+   ↓
+Research
+   ↓
+Plan
+   ↓
+Review
+   ↓
+Implementation
+
+Much safer for large projects.
+
+3. Editing the Plan
+
+A very useful feature:
+
+Ctrl + G
+
+opens the generated plan in your editor.
+
+You can modify it yourself.
+
+Example:
+
+Claude plan:
+
+1. Update API
+2. Update UI
+
+You edit:
+
+1. Update API
+2. Update UI
+3. Add audit logging
+4. Add integration tests
+
+Claude then follows the edited version.
+
+This lets you steer implementation before any code is written.
+
+4. Effort Levels (/effort)
+
+Claude already reasons before responding.
+
+Sometimes you need more thinking.
+
+Check or change the level:
+
+/effort
+Available Levels
+Low
+
+Fastest.
+
+Best for:
+
+Simple edits
+Small questions
+Quick code generation
+
+Example:
+
+Rename this variable.
+Medium (often default)
+
+Balanced speed and quality.
+
+Best for:
+
+Typical development work
+Feature additions
+Standard debugging
+High / Max
+
+More reasoning.
+
+Best for:
+
+Difficult bugs
+Architecture questions
+Complex algorithms
+Edge-case analysis
+
+Example:
+
+Why does this race condition occur only in production?
+
+Higher effort helps Claude explore more possibilities.
+
+5. The ultrathink Keyword
+
+Sometimes you don't want to change the whole session's effort level.
+
+For one specific prompt:
+
+ultrathink:
+Why does this distributed cache invalidation bug happen?
+
+This tells Claude:
+
+Spend extra effort on this response only.
+
+Difference Between /effort and ultrathink
+/effort
+
+Changes session behavior.
+
+Example:
+
+/effort max
+
+Now every prompt gets deeper reasoning.
+
+ultrathink
+
+Applies only to one prompt.
+
+Example:
+
+ultrathink
+Find the root cause of this memory leak.
+
+Next prompt returns to normal effort.
+
+6. Planning Mode vs Effort
+
+This is the most important distinction.
+
+Many people confuse them.
+
+Planning Mode = Breadth
+
+Claude explores more of the codebase.
+
+Questions like:
+
+Which files are involved?
+What components are connected?
+What dependencies exist?
+
+Example:
+
+Add multi-factor authentication.
+
+Requires understanding:
+
+Backend
+Frontend
+Database
+User flows
+
+Use Planning Mode.
+
+Higher Effort = Depth
+
+Claude thinks harder about a specific problem.
+
+Questions like:
+
+Why does this algorithm fail?
+What's causing this deadlock?
+What's the optimal implementation?
+
+Example:
+
+Find the bug in this recursive parser.
+
+Use higher effort.
+
+7. Combining Both
+
+For the hardest tasks, use both.
+
+Example:
+
+/plan
+/effort max
+
+Add a real-time collaborative editing system.
+
+Claude will:
+
+Explore many files
+Build a plan
+Think deeply about architecture
+Wait for approval
+Implement carefully
+
+This gives both:
+
+Broad understanding
+Deep reasoning
+Practical Examples
+Example 1: Small UI Fix
+
+Use:
+
+Screenshot
+Normal effort
+Here's a screenshot.
+Move the Save button below the form.
+
+No planning needed.
+
+Example 2: New Feature
+
+Use:
+
+Planning Mode
+/plan
+
+Add user profile pictures.
+
+Claude researches first.
+
+Example 3: Hard Bug
+
+Use:
+
+High effort
+/effort max
+
+Why does this memory leak happen?
+
+Claude reasons more deeply.
+
+Example 4: Large Complex Feature
+
+Use:
+
+Planning Mode
+Max effort
+/plan
+/effort max
+
+Implement role-based access control across the application.
+
+Claude explores broadly and reasons deeply.
+
+Mental Model
+
+Think of the tools like this:
+
+Screenshots = Better Communication
+
+"This is what I mean."
+
+Planning Mode = Bigger Map
+
+"Understand the whole system before acting."
+
+Effort Level = Stronger Thinking
+
+"Analyze this more carefully."
+
+Ultrathink = Temporary Boost
+
+"Think extra hard about this one request."
+
+Key Takeaway
+
+Use screenshots when showing UI changes,
+Planning Mode when Claude needs to understand many parts of your codebase,
+and higher effort levels when the challenge is intellectually difficult. 
+Planning improves breadth of understanding, while effort improves depth of reasoning. 
+Combining both is ideal for large, complex engineering tasks.
+
+
+
+
+This section teaches conversation management in Claude Code. The core idea is:
+
+Don't treat the conversation as something you must passively accept. You can actively control, edit, rewind, summarize, and reset it to keep Claude focused.
+
+Think of it like managing a junior developer: sometimes you stop them, redirect them, remove irrelevant discussion, or start a new task entirely.
+
+The Big Picture
+
+As conversations get longer, problems arise:
+
+Claude may start solving the wrong problem.
+It may focus on irrelevant details.
+Old debugging discussions can clutter context.
+Repeated mistakes can happen.
+
+Claude provides tools to manage this:
+
+Tool	Purpose
+Escape	Stop Claude immediately
+Escape + Memory	Fix recurring mistakes
+Double Escape / /rewind	Go back in conversation history
+/compact	Keep important knowledge, remove clutter
+/clear	Start fresh
+/resume	Return to an old conversation
+1. Interrupting Claude with Escape
+
+Sometimes Claude starts moving in the wrong direction.
+
+Press:
+
+Esc
+
+This immediately stops generation.
+
+Example
+
+You ask:
+
+Write tests for these 10 functions.
+
+Claude starts:
+
+I'll first analyze the entire architecture...
+Then I'll build a comprehensive testing framework...
+Then...
+
+But you only want:
+
+Test function #1 first.
+
+Press:
+
+Esc
+
+Then say:
+
+Focus only on function #1.
+
+Now Claude stays focused.
+
+Why This Is Powerful
+
+Many people let the AI continue even when it's wrong.
+
+Instead:
+
+Wrong direction
+      ↓
+Press Esc
+      ↓
+Redirect immediately
+
+This saves:
+
+Time
+Tokens
+Frustration
+2. Using Escape to Fix Repeated Mistakes
+
+This is one of the most valuable workflows.
+
+Suppose Claude repeatedly:
+
+Uses the wrong coding pattern
+Adds unnecessary comments
+Writes tests incorrectly
+Uses the wrong API
+Workflow
+Step 1
+
+Stop Claude:
+
+Esc
+Step 2
+
+Open memory:
+
+/memory
+
+or edit:
+
+CLAUDE.md
+Step 3
+
+Add a rule.
+
+Example:
+
+Use Vitest, never Jest.
+
+or
+
+Do not create service classes.
+Use functional modules.
+Step 4
+
+Continue.
+
+Now future conversations inherit the correction.
+
+Why This Matters
+
+Bad workflow:
+
+Conversation 1
+"Use Vitest"
+
+Conversation 2
+"Use Vitest"
+
+Conversation 3
+"Use Vitest"
+
+Good workflow:
+
+One memory update
+      ↓
+Permanent correction
+3. Rewinding Conversations
+
+Long conversations accumulate junk.
+
+Example:
+
+Feature work
+     ↓
+Bug
+     ↓
+30 messages debugging
+     ↓
+Bug solved
+
+Now those 30 messages are mostly irrelevant.
+
+Rewind
+
+Use:
+
+Esc Esc
+
+or:
+
+/rewind
+
+Claude shows conversation checkpoints.
+
+You can jump back to an earlier state.
+
+Example
+
+Timeline:
+
+Message 1: Build login feature
+Message 2: Update API
+Message 3: Debug deployment issue
+Message 4: More deployment debugging
+Message 5: More deployment debugging
+
+Deployment issue is solved.
+
+Rewind to:
+
+Message 2
+
+Continue from there.
+
+Benefit
+
+You keep:
+
+✅ Project understanding
+
+while removing:
+
+❌ Distracting discussion
+
+4. The /compact Command
+
+One of the most important commands.
+
+Use:
+
+/compact
+What It Does
+
+Claude compresses:
+
+Long conversation
+
+into:
+
+Short summary
+
+while preserving important knowledge.
+
+Example
+
+Suppose Claude learned:
+
+Project architecture
+Database schema
+API conventions
+Authentication flow
+
+after 100 messages.
+
+You don't want to lose that knowledge.
+
+But you also don't want all 100 messages.
+
+Before
+100 messages
+After /compact
+Summary of important findings
+
+Claude remembers what matters.
+
+Best Use Cases
+
+When:
+
+Context is valuable
+Conversation is getting long
+You're continuing related work
+Mental Model
+Conversation
+     ↓
+Extract knowledge
+     ↓
+Discard clutter
+5. The /clear Command
+
+Use:
+
+/clear
+
+when starting something completely different.
+
+Example
+
+Current task:
+
+Fix React authentication
+
+Next task:
+
+Design Kubernetes deployment
+
+These are unrelated.
+
+Use:
+
+/clear
+Result
+
+Claude starts with fresh context.
+
+No assumptions from previous work.
+
+Why This Helps
+
+Without clearing:
+
+Authentication context
+        +
+Deployment task
+
+can confuse the model.
+
+With clearing:
+
+Fresh conversation
+
+focused entirely on the new topic.
+
+6. /resume
+
+Clearing does not destroy history.
+
+You can return later using:
+
+/resume
+
+Think of it as switching tabs.
+
+Example:
+
+Conversation A → Authentication
+Conversation B → Infrastructure
+Conversation C → Testing
+
+Move between them when needed.
+
+Compact vs Clear
+
+This is the most important distinction.
+
+/compact
+
+Keeps knowledge.
+
+Long conversation
+      ↓
+Summary
+      ↓
+Continue same project
+
+Use when staying on related work.
+
+/clear
+
+Removes context.
+
+Task A
+      ↓
+New conversation
+      ↓
+Task B
+
+Use when switching topics.
+
+Practical Workflow
+
+Imagine you're building a feature.
+
+Phase 1
+Add user profiles
+
+Claude learns:
+
+User model
+APIs
+Database schema
+Phase 2
+
+Conversation gets long.
+
+Run:
+
+/compact
+
+Keep the knowledge.
+
+Phase 3
+
+Claude starts over-engineering.
+
+Press:
+
+Esc
+
+and redirect.
+
+Phase 4
+
+Claude repeatedly adds comments.
+
+Open:
+
+/memory
+
+Add:
+
+Use comments sparingly.
+Phase 5
+
+Finish user profiles.
+
+Now switch to:
+
+CI/CD pipeline redesign
+
+Run:
+
+/clear
+
+Fresh start.
+
+Mental Model
+
+Think of these tools as conversation controls:
+
+Escape
+
+Stop. You're going the wrong way.
+
+Memory Update
+
+Remember this rule permanently.
+
+Rewind
+
+Go back to an earlier checkpoint.
+
+Compact
+
+Keep what matters, throw away clutter.
+
+Clear
+
+Start a completely new topic.
+
+Resume
+
+Return to an old thread.
+
+
+Effective Claude users don't just write prompts—they actively manage context. 
+Use Escape to redirect mistakes immediately, memory files to fix recurring issues permanently, 
+rewind to remove unhelpful discussion, /compact to preserve useful knowledge while reducing clutter, 
+and /clear when switching to unrelated work. These tools help keep Claude focused, accurate, and p
+roductive during long development sessions.
+
+******************************************HooKS************************************
+
+
+This lesson is about Hooks, one of the most powerful automation features in Claude Code.
+
+If memory files teach Claude how to think, hooks control what happens before and after Claude acts.
+
+The Big Idea
+
+Normally, Claude works like this:
+
+You ask something
+       ↓
+Claude decides to use a tool
+       ↓
+Tool runs
+       ↓
+Result returned to Claude
+       ↓
+Claude responds
+
+Example:
+
+"Fix this bug"
+      ↓
+Claude uses Edit tool
+      ↓
+File changes
+      ↓
+Claude responds
+
+Hooks allow you to insert your own code into this process.
+
+You ask something
+       ↓
+Claude wants to use tool
+       ↓
+HOOK
+       ↓
+Tool runs
+       ↓
+HOOK
+       ↓
+Claude continues
+
+Think of hooks as:
+
+"Automatic scripts that run around Claude's tool usage."
+
+Why Hooks Matter
+
+Without hooks:
+
+Claude edits file
+Done
+
+With hooks:
+
+Claude edits file
+       ↓
+Auto format
+       ↓
+Run tests
+       ↓
+Check linting
+       ↓
+Give feedback
+
+The workflow becomes much more powerful.
+
+Two Main Hook Types
+
+Most people start with:
+
+PreToolUse
+PostToolUse
+1. PreToolUse Hooks
+
+Runs before Claude uses a tool.
+
+Think:
+
+"Claude wants to do something. Let me check first."
+
+Example Flow
+Claude wants to read secrets.txt
+       ↓
+PreToolUse hook runs
+       ↓
+Hook checks file
+       ↓
+Block access
+
+Tool never executes.
+
+What PreToolUse Can Do
+Allow
+Claude wants to read file
+      ↓
+Allowed
+      ↓
+Read executes
+Block
+Claude wants to read file
+      ↓
+Denied
+      ↓
+Error returned
+Validate
+Claude wants to edit file
+      ↓
+Check rules
+      ↓
+Allow or reject
+Example Configuration
+{
+  "PreToolUse": [
+    {
+      "matcher": "Read",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node read_hook.js"
+        }
+      ]
+    }
+  ]
+}
+
+Meaning:
+
+Whenever Claude uses Read
+      ↓
+Run read_hook.js first
+Real Example: Protect Secrets
+
+Suppose your project contains:
+
+.env.production
+
+You never want Claude touching it.
+
+PreToolUse:
+
+Claude requests Read
+      ↓
+Hook checks filename
+      ↓
+If .env.production
+      ↓
+Reject
+
+Result:
+
+Access denied
+
+Claude never sees the file.
+
+2. PostToolUse Hooks
+
+Runs after a tool finishes.
+
+Think:
+
+"Claude already did something. Now perform follow-up actions."
+
+Example Flow
+Claude edits file
+      ↓
+Edit completes
+      ↓
+PostToolUse hook runs
+      ↓
+Format code
+Example Configuration
+{
+  "PostToolUse": [
+    {
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node edit_hook.js"
+        }
+      ]
+    }
+  ]
+}
+
+Meaning:
+
+Whenever Write or Edit occurs
+      ↓
+Run edit_hook.js
+Important Difference
+PreToolUse
+
+Can stop execution.
+
+Hook
+ ↓
+Allow?
+ ↓
+Tool
+PostToolUse
+
+Cannot stop execution.
+
+Tool
+ ↓
+Finished
+ ↓
+Hook
+
+The action already happened.
+
+Hook Matchers
+
+Hooks target specific tools.
+
+Example:
+
+"matcher": "Read"
+
+Only triggers on Read.
+
+"matcher": "Write"
+
+Only triggers on Write.
+
+"matcher": "Edit"
+
+Only triggers on Edit.
+
+"matcher": "Write|Edit"
+
+Triggers on both.
+
+Think of matchers as filters.
+
+Tool Type
+     ↓
+Matches?
+     ↓
+Run hook
+Where Hooks Are Stored
+
+Claude supports three locations.
+
+Global Hooks
+~/.claude/settings.json
+
+Affects:
+
+ALL projects
+
+Example:
+
+Always run prettier after edits.
+Project Hooks
+.claude/settings.json
+
+Affects:
+
+Entire team
+
+Committed to Git.
+
+Everyone gets the same behavior.
+
+Local Project Hooks
+.claude/settings.local.json
+
+Affects:
+
+Only you
+
+Not committed.
+
+Perfect for personal workflows.
+
+Practical Use Cases
+
+These are the most common real-world hook setups.
+
+1. Auto Formatting
+
+Problem:
+
+Claude edits code.
+
+Formatting may be inconsistent.
+
+Solution:
+
+PostToolUse
+     ↓
+Run prettier
+
+Workflow:
+
+Claude edits file
+     ↓
+Prettier runs
+     ↓
+Code formatted
+2. Run Tests Automatically
+
+Problem:
+
+Claude changes code.
+
+Nobody knows if tests pass.
+
+Solution:
+
+PostToolUse
+     ↓
+npm test
+
+Workflow:
+
+Claude edits file
+     ↓
+Tests run
+     ↓
+Results returned
+
+Claude immediately sees failures.
+
+3. Run Linting
+Claude edits file
+      ↓
+ESLint
+      ↓
+Feedback returned
+
+Claude can fix issues instantly.
+
+4. Type Checking
+
+For TypeScript:
+
+Claude edits
+      ↓
+tsc
+      ↓
+Type errors returned
+
+Claude gets immediate feedback.
+
+5. Access Control
+
+Prevent dangerous operations.
+
+Example:
+
+Block:
+- Production configs
+- Secrets
+- Deployment files
+
+Using PreToolUse.
+
+6. Naming Convention Enforcement
+
+Example rule:
+
+React components must use PascalCase
+
+Hook checks:
+
+Button.tsx
+
+Allowed.
+
+button.tsx
+
+Rejected.
+
+7. Logging Claude Activity
+
+Track:
+
+Files read
+Files edited
+Commands executed
+
+Useful in larger teams.
+
+Mental Model
+
+Think of hooks like Git hooks.
+
+Git has:
+
+pre-commit
+post-commit
+
+Claude has:
+
+PreToolUse
+PostToolUse
+
+Same concept.
+
+Complete Example
+
+You ask:
+
+Add a new login component.
+
+Claude decides:
+
+Edit Login.tsx
+
+Flow:
+
+Claude requests Edit
+       ↓
+PreToolUse Hook
+       ↓
+Validate file access
+       ↓
+Edit occurs
+       ↓
+PostToolUse Hook
+       ↓
+Run Prettier
+       ↓
+Run ESLint
+       ↓
+Run Tests
+       ↓
+Feedback returned
+
+Everything happens automatically.
+
+Key Takeaway
+
+Hooks turn Claude from a simple AI assistant into a workflow-aware development agent.
+
+PreToolUse hooks are gatekeepers: they can inspect, validate, or block actions before Claude performs them.
+PostToolUse hooks are automators: they run follow-up tasks such as formatting, linting, testing, logging, or validation after Claude makes changes.
+
+A useful rule of thumb:
+
+PreToolUse = Control what Claude is allowed to do.
+PostToolUse = Improve what Claude has already done.
+
+That's why many advanced Claude Code setups use hooks to automatically enforce coding standards, run tests, protect sensitive files, and keep the development workflow largely hands-free.
+
+
+**********************************************************************HOOKS**********************************************
