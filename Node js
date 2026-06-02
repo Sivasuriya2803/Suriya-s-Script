@@ -1,0 +1,420 @@
+Step 1: Create the Project
+Create a folder
+mkdir express-learning
+cd express-learning
+Initialize Node.js
+npm init -y
+
+This creates:
+
+package.json
+Install Express
+npm install express
+Step 2: Create the Entry File
+
+Create:
+
+server.js
+
+Question:
+
+What does a server need first?
+
+Answer:
+A server needs to:
+
+Listen on a port
+Accept requests
+
+Write this:
+
+const express = require("express");
+
+const app = express();
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+Run it
+node server.js
+
+You should see:
+
+Server running on port 3000
+Understanding
+const app = express();
+
+Creates an Express application.
+
+app.listen(...)
+
+Starts the server.
+
+Think of it as:
+
+Express App
+    ↓
+Listens on Port 3000
+    ↓
+Ready for Requests
+Step 3: Create Your First Route
+
+A route decides:
+
+If someone visits this URL, what should happen?
+
+Add:
+
+app.get("/", (req, res) => {
+  res.send("Hello Express");
+});
+
+Full code:
+
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello Express");
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+Test
+
+Open:
+
+http://localhost:3000
+
+Output:
+
+Hello Express
+Understand
+app.get()
+
+Means:
+
+GET request
+URL path
+Callback
+app.get("/", callback)
+
+When user visits:
+
+/
+
+Run the callback.
+
+Step 4: Learn Request and Response
+
+Look at:
+
+(req, res)
+
+These are the most important objects in Express.
+
+Request Object (req)
+
+Contains information coming from the client.
+
+Example:
+
+app.get("/", (req, res) => {
+  console.log(req.method);
+  console.log(req.url);
+
+  res.send("Check terminal");
+});
+
+Visit:
+
+localhost:3000
+
+Terminal:
+
+GET
+/
+
+Useful request properties:
+
+req.method
+req.url
+req.params
+req.query
+req.body
+req.headers
+
+Don't memorize them now.
+
+Just remember:
+
+req = incoming data
+Response Object (res)
+
+Used to send data back.
+
+Examples:
+
+Send text
+res.send("Hello");
+Send JSON
+res.json({
+  name: "John"
+});
+Set status
+res.status(404).send("Not Found");
+
+Remember:
+
+res = outgoing data
+Step 5: Multiple Routes
+
+Add:
+
+app.get("/", (req, res) => {
+  res.send("Home");
+});
+
+app.get("/about", (req, res) => {
+  res.send("About Page");
+});
+
+app.get("/contact", (req, res) => {
+  res.send("Contact Page");
+});
+
+Now:
+
+/
+/about
+/contact
+
+all work separately.
+
+Step 6: Route Parameters
+
+Suppose:
+
+/user/1
+/user/2
+/user/3
+
+Instead of creating many routes:
+
+app.get("/user/:id", (req, res) => {
+  res.send(req.params.id);
+});
+
+Visit:
+
+/user/100
+
+Output:
+
+100
+Understand
+:id
+
+is a placeholder.
+
+Express stores it in:
+
+req.params
+
+Example:
+
+console.log(req.params);
+
+Output:
+
+{
+  id: "100"
+}
+Step 7: Query Parameters
+
+URL:
+
+/products?category=laptop
+
+Route:
+
+app.get("/products", (req, res) => {
+  res.send(req.query.category);
+});
+
+Output:
+
+laptop
+
+Difference:
+
+/user/10
+       ↑
+params
+
+/products?category=laptop
+                     ↑
+query
+Step 8: Middleware
+
+Before a route runs, Express can execute some code.
+
+That's middleware.
+
+Create:
+
+app.use((req, res, next) => {
+  console.log("Middleware executed");
+
+  next();
+});
+Full Flow
+Request
+   ↓
+Middleware
+   ↓
+Route
+   ↓
+Response
+Why next()?
+
+Without:
+
+next();
+
+the request gets stuck.
+
+Middleware
+   ↓
+STOP
+
+With:
+
+next();
+Middleware
+   ↓
+Next Middleware/Route
+Step 9: Create a Custom Middleware
+
+Example:
+
+function logger(req, res, next) {
+  console.log(`${req.method} ${req.url}`);
+
+  next();
+}
+
+app.use(logger);
+
+Every request gets logged.
+
+Example:
+
+GET /
+GET /about
+GET /user/10
+Step 10: Handle POST Requests
+
+Install body parser support (built into Express):
+
+app.use(express.json());
+
+Add route:
+
+app.post("/users", (req, res) => {
+  console.log(req.body);
+
+  res.send("User created");
+});
+
+Test with Postman:
+
+{
+  "name": "John"
+}
+
+Output:
+
+{
+  name: "John"
+}
+Step 11: Error Handling
+
+Normal middleware:
+
+(req, res, next)
+
+Error middleware:
+
+(err, req, res, next)
+
+Notice:
+
+err
+
+comes first.
+
+Example:
+
+app.get("/error", (req, res) => {
+  throw new Error("Something broke");
+});
+
+Add at the bottom:
+
+app.use((err, req, res, next) => {
+  console.log(err.message);
+
+  res.status(500).json({
+    error: err.message
+  });
+});
+
+Visit:
+
+/error
+
+Response:
+
+{
+  "error": "Something broke"
+}
+Final Project Structure
+
+Once you understand everything above, refactor into:
+
+express-learning/
+│
+├── server.js
+│
+├── routes/
+│   └── userRoutes.js
+│
+├── middleware/
+│   └── logger.js
+│
+├── controllers/
+│   └── userController.js
+│
+└── package.json
+
+But don't create this structure yet.
+
+Your First Assignment
+
+Build this yourself:
+
+GET    /
+GET    /about
+GET    /users/:id
+POST   /users
+
+Requirements:
+
+Use one custom logger middleware.
+Use req.params.
+Use req.body.
+Return JSON responses.
+Add one error route /error.
