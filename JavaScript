@@ -1,0 +1,595 @@
+let, const, and var
+
+Before ES6, JavaScript mainly used var.
+
+var
+var name = "John";
+Characteristics
+Function scoped
+Can be redeclared
+Can be reassigned
+Hoisted and initialized with undefined
+console.log(a); // undefined
+
+var a = 10;
+
+Equivalent to:
+
+var a;
+
+console.log(a);
+
+a = 10;
+Problem
+if (true) {
+    var x = 10;
+}
+
+console.log(x); // 10
+
+var ignores block boundaries.
+
+let
+let age = 25;
+Characteristics
+Block scoped
+Can be reassigned
+Cannot be redeclared in same scope
+let x = 10;
+x = 20;
+
+Valid.
+
+let x = 10;
+let x = 20;
+
+Error.
+
+Block Scope
+if (true) {
+    let x = 10;
+}
+
+console.log(x);
+
+Error.
+
+Temporal Dead Zone (TDZ)
+console.log(a);
+
+let a = 5;
+
+Error.
+
+Variable exists but cannot be accessed before declaration.
+
+const
+const PI = 3.14;
+Characteristics
+Block scoped
+Cannot be reassigned
+Must be initialized
+const a;
+
+Error.
+
+Important Corner Case
+const user = {
+    name: "John"
+};
+
+user.name = "Mike";
+
+Works.
+
+Because object contents can change.
+
+Only the reference is constant.
+
+user = {};
+
+Error.
+
+Quick Comparison
+Feature	var	let	const
+Scope	Function	Block	Block
+Redeclare	Yes	No	No
+Reassign	Yes	Yes	No
+Hoisted	Yes	Yes	Yes
+TDZ	No	Yes	Yes
+2. Arrow Functions
+
+Introduced in ES6.
+
+Traditional:
+
+function add(a, b) {
+    return a + b;
+}
+
+Arrow:
+
+const add = (a, b) => {
+    return a + b;
+};
+Short Form
+const add = (a, b) => a + b;
+
+Implicit return.
+
+One Parameter
+const square = x => x * x;
+No Parameter
+const greet = () => "Hello";
+Important Difference: this
+
+Normal function:
+
+const person = {
+    name: "John",
+    say() {
+        console.log(this.name);
+    }
+};
+
+Works.
+
+Arrow function:
+
+const person = {
+    name: "John",
+    say: () => {
+        console.log(this.name);
+    }
+};
+
+Usually undefined.
+
+Arrow functions don't create their own this.
+
+They inherit from surrounding scope.
+
+When To Use
+
+Good:
+
+arr.map(x => x * 2);
+
+Bad:
+
+const obj = {
+    method: () => {}
+};
+
+Avoid for object methods.
+
+3. Destructuring
+
+Extract values from arrays or objects.
+
+Array Destructuring
+const arr = [10, 20, 30];
+
+const [a, b, c] = arr;
+
+console.log(a);
+
+Output:
+
+10
+Skip Values
+const [first, , third] = arr;
+Default Values
+const [a, b = 100] = [10];
+
+Result:
+
+a = 10
+b = 100
+Rest Operator
+const [first, ...rest] = [1,2,3,4];
+
+Result:
+
+first = 1
+rest = [2,3,4]
+Object Destructuring
+const user = {
+    name: "John",
+    age: 25
+};
+
+const { name, age } = user;
+Rename
+const { name: username } = user;
+Default
+const { city = "Chennai" } = user;
+Nested Destructuring
+const user = {
+    profile: {
+        name: "John"
+    }
+};
+
+const {
+    profile: { name }
+} = user;
+4. Template Literals
+
+Old:
+
+const msg = "Hello " + name;
+
+New:
+
+const msg = `Hello ${name}`;
+Multi-line Strings
+const text = `
+Line 1
+Line 2
+`;
+Expressions
+const result = `${5 + 5}`;
+
+Output:
+
+10
+5. Arrays
+map()
+
+Transforms each element.
+
+const nums = [1,2,3];
+
+const doubled = nums.map(x => x * 2);
+
+Result:
+
+[2,4,6]
+map returns new array
+const nums = [1,2];
+
+nums.map(x => x + 1);
+
+Original remains unchanged.
+
+filter()
+
+Keeps matching elements.
+
+const nums = [1,2,3,4];
+
+const even = nums.filter(x => x % 2 === 0);
+
+Result:
+
+[2,4]
+reduce()
+
+Reduces array to one value.
+
+const nums = [1,2,3,4];
+
+const sum = nums.reduce(
+    (acc, curr) => acc + curr,
+    0
+);
+
+Result:
+
+10
+How reduce Works
+
+Iteration 1:
+
+acc = 0
+curr = 1
+
+Iteration 2:
+
+acc = 1
+curr = 2
+
+Iteration 3:
+
+acc = 3
+curr = 3
+
+Iteration 4:
+
+acc = 6
+curr = 4
+
+Final:
+
+10
+Convert Array to Object
+const users = [
+  {id:1,name:"A"},
+  {id:2,name:"B"}
+];
+
+const result = users.reduce((acc,user)=>{
+   acc[user.id]=user;
+   return acc;
+}, {});
+6. Objects
+Object Shorthand
+
+Old:
+
+const name = "John";
+
+const obj = {
+    name: name
+};
+
+New:
+
+const obj = {
+    name
+};
+Computed Properties
+const key = "age";
+
+const user = {
+    [key]: 25
+};
+
+Result:
+
+{
+ age: 25
+}
+Spread Operator
+const user = {
+    name: "John"
+};
+
+const updated = {
+    ...user,
+    age: 25
+};
+
+Result:
+
+{
+ name:"John",
+ age:25
+}
+Object.entries()
+Object.entries(user);
+
+Returns:
+
+[
+ ["name","John"]
+]
+Object.keys()
+Object.keys(user);
+Object.values()
+Object.values(user);
+7. Promises
+
+Promise represents future completion/failure.
+
+States:
+
+Pending
+Fulfilled
+Rejected
+Creating Promise
+const promise = new Promise(
+    (resolve, reject) => {
+        resolve("Success");
+    }
+);
+Consuming
+promise.then(result => {
+    console.log(result);
+});
+Reject
+const promise = new Promise(
+    (resolve, reject) => {
+        reject("Failed");
+    }
+);
+Catch
+promise
+   .then(data => console.log(data))
+   .catch(err => console.log(err));
+Finally
+promise
+   .finally(() => {
+      console.log("Done");
+   });
+
+Runs regardless of success/failure.
+
+Promise Chaining
+fetchUser()
+ .then(user => getOrders(user.id))
+ .then(orders => getProducts(orders))
+ .catch(err => console.log(err));
+8. Async/Await
+
+Built on top of Promises.
+
+Makes async code look synchronous.
+
+Basic Example
+async function getData() {
+    return "Hello";
+}
+
+Actually returns:
+
+Promise.resolve("Hello")
+await
+async function run() {
+    const result = await fetchData();
+
+    console.log(result);
+}
+
+Execution pauses until promise resolves.
+
+Error Handling
+async function run() {
+    try {
+        const data = await fetchData();
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+Multiple Await Problem
+
+Bad:
+
+const a = await fetchA();
+const b = await fetchB();
+
+Runs sequentially.
+
+Better:
+
+const [a,b] = await Promise.all([
+   fetchA(),
+   fetchB()
+]);
+
+Runs concurrently.
+
+Common Promise Utilities
+Promise.all()
+
+Fails if any promise fails.
+
+await Promise.all([
+   p1,
+   p2,
+   p3
+]);
+Promise.allSettled()
+
+Waits for all.
+
+await Promise.allSettled([
+   p1,
+   p2
+]);
+Promise.race()
+
+First completed wins.
+
+await Promise.race([
+   p1,
+   p2
+]);
+Promise.any()
+
+First successful wins.
+
+await Promise.any([
+   p1,
+   p2
+]);
+9. Modules
+
+Used to split code into files.
+
+Export
+Named Export
+export const name = "John";
+
+export function greet() {}
+Export Together
+const name = "John";
+
+function greet() {}
+
+export { name, greet };
+Default Export
+export default function App() {}
+
+Only one default export per file.
+
+Import
+Named Import
+import { greet } from "./app.js";
+Multiple
+import {
+   greet,
+   name
+} from "./app.js";
+Alias
+import {
+   greet as sayHello
+} from "./app.js";
+Default Import
+import App from "./app.js";
+Import Everything
+import * as Utils from "./app.js";
+
+Usage:
+
+Utils.greet();
+Most Important Interview Corner Cases
+1. map() vs forEach()
+arr.map(...)
+
+Returns new array.
+
+arr.forEach(...)
+
+Returns undefined.
+
+2. == vs ===
+5 == "5"
+
+true
+
+5 === "5"
+
+false
+
+Always prefer ===.
+
+3. Spread vs Rest
+
+Spread:
+
+const arr2 = [...arr1];
+
+Expands.
+
+Rest:
+
+const [a, ...rest] = arr;
+
+Collects.
+
+4. Arrow Function Object Return
+
+Wrong:
+
+const fn = () => { name: "John" };
+
+Returns undefined.
+
+Correct:
+
+const fn = () => ({
+   name: "John"
+});
+5. Async Function Always Returns Promise
+async function test() {
+   return 10;
+}
+
+Returns:
+
+Promise { 10 }
+
+not 10.
