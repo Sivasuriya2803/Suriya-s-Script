@@ -1,0 +1,251 @@
+If your goal is to master React.js, it helps to learn topics in a structured progression rather than jumping directly into advanced concepts.
+
+Phase 1: JavaScript Fundamentals (Prerequisite)
+
+Before React, be comfortable with:
+
+Variables (let, const)
+Functions and Arrow Functions
+Objects and Arrays
+Destructuring
+Spread and Rest Operators
+Template Literals
+Array Methods:
+map()
+filter()
+find()
+reduce()
+Promises
+Async/Await
+ES Modules (import / export)
+DOM Manipulation Basics
+Event Handling
+Phase 2: React Fundamentals
+1. Introduction to React
+What is React?
+Virtual DOM
+SPA (Single Page Applications)
+React Architecture
+2. Environment Setup
+Node.js and npm
+Creating React Projects
+Project Structure
+3. JSX
+JSX Syntax
+Expressions in JSX
+JSX Rules
+Fragments
+4. Components
+Functional Components
+Component Composition
+Reusable Components
+5. Props
+Passing Props
+Props Destructuring
+Default Props
+Children Props
+6. Event Handling
+Click Events
+Form Events
+Keyboard Events
+Phase 3: State Management Basics
+7. State
+useState
+Updating State
+State with Objects
+State with Arrays
+8. Conditional Rendering
+Ternary Operators
+Logical AND (&&)
+Switch Patterns
+9. Lists and Keys
+Rendering Lists
+Unique Keys
+Dynamic Lists
+Phase 4: Forms and User Input
+10. Forms
+Controlled Components
+Uncontrolled Components
+Form Validation
+11. Refs
+useRef
+Accessing DOM Elements
+Focus Management
+Phase 5: React Hooks
+12. useEffect
+Side Effects
+Dependency Array
+Cleanup Functions
+13. useRef
+Persistent Values
+DOM References
+14. useMemo
+Performance Optimization
+Memoized Values
+15. useCallback
+Memoized Functions
+16. Custom Hooks
+Creating Reusable Logic
+Hook Rules
+17. useReducer
+Complex State Logic
+Reducer Pattern
+18. useContext
+Global State Basics
+Context API
+Phase 6: Component Design Patterns
+19. Lifting State Up
+20. Prop Drilling
+21. Composition Pattern
+22. Container-Presentational Pattern
+23. Higher Order Components (HOC)
+24. Render Props Pattern
+Phase 7: Routing
+25. React Router
+Route Setup
+Nested Routes
+Dynamic Routes
+Route Parameters
+Protected Routes
+Navigation
+Phase 8: API Integration
+26. Fetch API
+27. Axios
+28. REST APIs
+29. Error Handling
+30. Loading States
+31. Pagination
+32. Infinite Scrolling
+Phase 9: Advanced State Management
+33. Context API Deep Dive
+34. Redux Fundamentals
+35. Redux Toolkit
+36. RTK Query
+37. Zustand
+38. Jotai (Optional)
+Phase 10: Performance Optimization
+39. React.memo
+40. useMemo
+41. useCallback
+42. Code Splitting
+43. Lazy Loading
+44. Bundle Optimization
+45. Virtualization
+Phase 11: Advanced React
+46. Error Boundaries
+47. Portals
+48. Suspense
+49. Concurrent Features
+50. Server Components
+51. Hydration
+52. Reconciliation Algorithm
+53. React Fiber Architecture
+Phase 12: Testing
+54. Unit Testing
+55. Integration Testing
+56. Component Testing
+
+Common tools:
+
+Jest
+React Testing Library
+Phase 13: TypeScript with React
+57. TypeScript Basics
+58. Props Typing
+59. State Typing
+60. Generic Components
+61. Custom Hook Typing
+Phase 14: React Ecosystem
+62. Styling Methods
+CSS Modules
+Styled Components
+Tailwind CSS
+63. Authentication
+JWT
+OAuth
+64. Form Libraries
+React Hook Form
+Formik
+65. Data Fetching Libraries
+TanStack Query
+SWR
+Phase 15: Next-Level React
+66. SSR (Server-Side Rendering)
+67. SSG (Static Site Generation)
+68. ISR (Incremental Static Regeneration)
+
+Using:
+
+Next.js
+Phase 16: Real-World Projects
+
+Build these in order:
+
+Counter App
+Todo App
+Weather App
+Notes App
+Movie Search App
+Expense Tracker
+E-Commerce Store
+Chat Application
+Admin Dashboard
+Social Media Clone
+Learning Management System
+Full SaaS Application
+Phase 17: Interview-Level React
+
+Master:
+
+Component Lifecycle
+Virtual DOM
+Diffing Algorithm
+Reconciliation
+Hooks Internals
+Redux Architecture
+Context vs Redux
+Controlled vs Uncontrolled Components
+React Performance Optimization
+React Rendering Process
+Recommended Learning Order (90-Day Roadmap)
+
+Weeks 1–2
+
+JavaScript ES6+
+JSX
+Components
+Props
+State
+
+Weeks 3–4
+
+Hooks (useState, useEffect)
+Forms
+Lists
+Conditional Rendering
+
+Weeks 5–6
+
+Routing
+APIs
+Custom Hooks
+
+Weeks 7–8
+
+Context API
+Redux Toolkit
+Authentication
+
+Weeks 9–10
+
+Performance Optimization
+Testing
+TypeScript
+
+Weeks 11–12
+
+Advanced React
+Next.js
+Build a complete project
+
+A strong indicator that you've reached an advanced level is being able to build an authenticated dashboard application with routing, API integration, state management, testing, and performance optimizations without following a tutorial.
