@@ -371,3 +371,1165 @@ PAR Exceeded?
  Warehouse Fulfillment
          ↓
  Stock Delivered
+
+
+
+
+Now we're getting into the real business logic of Consignment Replenishment. What you've shared is enough to understand not just the workflow, but also the inventory calculations, approval process, and SAP behavior.
+
+I'll explain it the way a BA, Developer, QA, or Functional Consultant would understand it.
+
+Level 1: What is the business trying to control?
+
+The main objective is:
+
+Hospital should have enough stock
+BUT
+should not hold excessive stock
+
+Therefore:
+
+Current Stock + Incoming Stock
+must stay within PAR
+
+If it exceeds PAR:
+
+Approval Required
+
+This entire FRS is built around that concept.
+
+Level 2: Understanding the PAR Formula
+
+This is the most important part of the document.
+
+The system calculates:
+
+Total Consignment Position
+=
+Requested Quantity
++
+Total Sold To Consignment Qty
++
+In Processing Qty
+
+Then:
+
+Over PAR
+=
+Total Consignment Position
+-
+Current PAR
+Example 1
+
+Current PAR
+
+100
+
+Current consignment stock
+
+70
+
+Orders in processing
+
+10
+
+User requests
+
+15
+
+Calculation:
+
+Total Consignment Position
+
+=
+70 + 10 + 15
+
+=
+95
+
+Over PAR
+
+95 - 100
+
+=
+-5
+
+Result:
+
+Within PAR
+No approval
+Example 2
+
+Current PAR
+
+100
+
+Current stock
+
+70
+
+In Processing
+
+10
+
+User requests
+
+40
+
+Calculation
+
+70 + 10 + 40
+
+=
+120
+
+Over PAR
+
+120 - 100
+
+=
+20
+
+Result:
+
+Over PAR = 20
+Approval Required
+Level 3: What is "Total Sold To Consignment Qty"?
+
+The FRS gives country-specific logic.
+
+This value is configurable.
+
+Country Type 1
+
+Only LTC
+
+Display:
+
+Long Term Consignment Qty
+
+Example
+
+LTC = 50
+
+Display:
+
+50
+Country Type 2
+
+Only STC
+
+Display:
+
+STC Qty
+
+Example
+
+STC = 30
+
+Display:
+
+30
+Country Type 3
+
+LTC + STC
+
+Example
+
+LTC = 50
+STC = 30
+
+Display:
+
+80
+Level 4: Understanding In Processing Qty
+
+This is often confusing.
+
+Think:
+
+Orders not yet completed
+
+They already affect inventory planning.
+
+Example
+
+User already submitted:
+
+20 Stents
+
+Warehouse has not shipped yet.
+
+System must still consider them.
+
+Otherwise user could accidentally order twice.
+
+Why some order types are positive?
+
+KB
+
+ZKB
+
+ZNC
+
+ZFND
+
+These increase inventory.
+
+Therefore:
+
++
+
+in calculation.
+
+Example
+
+Pending KB order:
+
+20 units
+
+System assumes:
+
+20 units are coming
+
+So:
+
+In Processing = +20
+Why some order types are negative?
+
+ZKI
+
+ZKF
+
+Write Off
+
+KE
+
+These reduce inventory.
+
+Therefore:
+
+-
+
+Example
+
+Pending write-off
+
+10 units
+
+System assumes:
+
+10 units leaving inventory
+
+So:
+
+In Processing = -10
+Level 5: Over PAR Action Required Ribbon
+
+This is the core UI feature.
+
+When:
+
+Total Consignment Position > PAR
+
+User sees:
+
+Action Required
+
+Red Ribbon
+
+OVER PAR
+Level 6: What happens after clicking Over PAR?
+
+Popup opens.
+
+User sees:
+
+Product	Qty	PAR	Over PAR
+Stent A	40	100	20
+
+Plus:
+
+One Time Approval
+Permanent Approval
+Justification
+Level 7: One Time Approval
+
+Meaning:
+
+I only need extra stock this time
+
+Example:
+
+Special surgery tomorrow.
+
+Current PAR
+
+100
+
+Need
+
+130
+
+But only once.
+
+User selects:
+
+One Time Approval
+
+Approval route:
+
+Sales Rep
+      ↓
+Sales Manager
+      ↓
+Approve
+
+Order continues.
+
+PAR remains unchanged.
+
+Level 8: Permanent Approval
+
+Meaning:
+
+Current PAR is too low
+
+Example
+
+Hospital usage increased.
+
+Current PAR
+
+100
+
+Actual demand
+
+150
+
+User requests permanent increase.
+
+Approval flow:
+
+Sales Rep
+     ↓
+Sales Manager
+     ↓
+Demand Planner
+     ↓
+Approve
+
+After approval:
+
+Potential PAR increase.
+
+Level 9: Why Justification is Mandatory?
+
+Business wants a reason.
+
+Examples:
+
+Good justification
+Upcoming cardiac workshop requires additional inventory support.
+
+or
+
+Monthly procedure volume increased by 30%.
+
+Without justification:
+
+Apply button disabled
+Level 10: Important Design Decision
+
+Notice this statement:
+
+PAR calculation is not real-time
+
+This is very important for QA.
+
+User changes quantity:
+
+40 → 20
+
+System does NOT instantly recalculate.
+
+Recalculation happens after:
+
+Apply
+
+This is intentional.
+
+Level 11: Scenario 1 (Quantity Reduced)
+
+Initial:
+
+Over PAR
+
+User enters popup.
+
+Reduces quantity.
+
+Now:
+
+Total Consignment Position < PAR
+
+After Apply:
+
+System removes:
+
+Over PAR Flag
+
+No approval needed.
+
+Level 12: Scenario 2 (Product Deleted)
+
+Initial:
+
+Product A
+Over PAR
+
+User deletes product.
+
+Flag disappears.
+
+User later:
+
+Back to Page 1
+Add Product A again
+
+System recalculates.
+
+If still over PAR:
+
+Flag returns
+Confirm Order disabled
+
+until justification is provided again.
+
+Level 13: Scenario 3 (More Products Added Later)
+
+This is a common QA test case.
+
+Step 1
+
+User adds:
+
+Product A
+
+Over PAR.
+
+Provides justification.
+
+Step 2
+
+Returns to Page 1.
+
+Adds:
+
+Product B
+
+Also Over PAR.
+
+System behavior:
+
+Product A
+✓ Justified
+
+Product B
+✗ Not justified
+
+Therefore:
+
+Confirm Order Disabled
+
+until Product B is justified.
+
+Level 14: STC Replenishment
+
+STC = Short Term Consignment
+
+The process is exactly the same.
+
+Only two differences:
+
+Difference 1
+
+Stock Locations
+
+Only:
+
+Stock Location Type = STC
+
+shown.
+
+Difference 2
+
+Products
+
+Only:
+
+Stock Type = STC
+
+shown.
+
+Everything else:
+
+PAR
+Approvals
+Justification
+Over PAR
+
+remains identical.
+
+Level 15: Limited Release Replenishment
+
+This is a special controlled inventory process.
+
+Think:
+
+Restricted Products
+
+Example
+
+New Product Launch
+
+Only selected hospitals may receive it.
+
+Validation 1
+
+Cannot mix:
+
+Limited Release Product
++
+Normal Product
+
+in same order.
+
+Validation 2
+
+Check ZS10 Mapping
+
+Hospital A
+      ↓
+Allowed Products
+      ↓
+Product X
+Product Y
+
+Only those products appear.
+
+Level 16: Understanding Approval Matrix
+
+This section is very important because it drives My Tasks.
+
+AF-001
+Over PAR
++
+One Time
+
+Approval required.
+
+AF-002
+Over PAR
++
+Permanent
+
+Approval required.
+
+AF-004
+Non Standard Delivery
++
+Over PAR
++
+BSC Pays
+
+Approval required.
+
+AF-005
+Non Standard Delivery
++
+Over PAR
++
+Customer Pays
+
+Approval required.
+
+AF-007
+Z23
+PAR Adjustment Request
+
+Approval required.
+
+End-to-End Business Flow
+Page 1
+-------
+Select Customer
+Select Consignment Replenishment
+Select Reason
+Select Products
+
+        ↓
+
+Page 2
+-------
+Enter Quantity
+
+        ↓
+
+Calculate
+
+Total Consignment Position
+
+        ↓
+
+Position > PAR ?
+
+       / \
+      No  Yes
+      |    |
+      |    |
+      |  Over PAR Flag
+      |    |
+      |  Justification
+      |    |
+      |  One Time /
+      |  Permanent
+      |    |
+      |  Approval
+      |
+      ↓
+
+Confirm Order
+
+      ↓
+
+SAP Order
+(KB/ZKB)
+
+      ↓
+
+WarehouseGood — now you’ve shared the core “brain” behind the whole WIO system.
+
+This is where everything like Consignment Replenishment, PAR, Request Reasons, STC/LTC behavior, approval flows is actually controlled.
+
+I’ll explain it in a structured way so you understand how everything connects.
+
+1. The Big Picture (Most Important Concept)
+
+This entire document defines:
+
+MyOrder = Configuration-driven system
+NOT hardcoded system
+
+Meaning:
+
+No fixed logic in code for most behaviors
+Everything is controlled by config tables
+
+So:
+
+Request Type + Request Reason + Country + Sales Org
+        ↓
+Controls everything:
+- UI behavior
+- Validation
+- SAP payload
+- Approval flow
+- PAR logic
+2. How Consignment Replenishment is actually built
+
+Now connect your previous document:
+
+Step 1: Request Type
+
+From 3.8 Request Types:
+
+Consignment Replenishment
+Short Term Consignment Replenishment (STC)
+
+This defines:
+
+Entry point = Warehouse Inventory
+Base workflow = Order flow
+SAP mapping type (KB / ZKB)
+Step 2: Request Reason (THIS is the key driver)
+
+From 3.9 + 3.10 tables:
+
+Request Reason is:
+
+THE BUSINESS SCENARIO DRIVER
+
+It controls:
+
+PAR relevance
+Approval flow
+Cost center mapping
+SAP reason code
+UI labels
+Restrictions
+3. Where Request Reasons are actually defined
+3.9 Request Reasons table
+
+Only stores:
+
+Field	Meaning
+Request_Reason_Code	SAP code (B01, Z23, etc.)
+Description	Display text
+
+So this alone is NOT enough.
+
+3.10 Request_Reasons_Assignment (VERY IMPORTANT)
+
+This is the REAL logic engine.
+
+It connects:
+
+Country + Sales Org + Request Type + Request Reason + Legal Status
+
+So system decides:
+
+“Is this Request Reason valid for this scenario?”
+
+Example:
+
+Country = India
+Sales Org = 1000
+Request Type = Consignment Replenishment
+Request Reason = Fill Up
+Legal Status = LTC
+
+If NOT in mapping table → system blocks it.
+
+4. So what Request Reasons actually exist (conceptually)?
+
+Instead of LTC/STC thinking, classify reasons like this:
+
+A. Inventory-driven reasons (PAR-related)
+
+These are the MOST IMPORTANT for your FRS.
+
+1. Fill Up
+Normal replenishment to restore PAR
+
+Used when:
+
+Stock consumed
+Regular replenishment cycle
+
+👉 No special approval if within PAR
+
+2. Consumption Based Replenishment
+Driven by actual usage patterns
+
+Used when:
+
+High procedure consumption
+Hospital usage increase
+
+👉 Often triggers PAR review
+
+B. Demand / Planning reasons
+3. Forecast Demand
+Planned future usage
+
+Example:
+
+Monthly surgical schedule
+Seasonal demand
+
+👉 May cause Over PAR approvals
+
+4. Buffer Stock Increase
+Safety stock increase request
+
+Used when:
+
+Hospital wants extra safety stock
+
+👉 Usually Permanent Approval
+
+C. Event-driven reasons
+5. Workshop / Training
+Temporary stock requirement
+
+Used for:
+
+Training programs
+Medical demos
+
+👉 Often STC-heavy
+
+6. Surgical Case Support
+Specific patient procedure requirement
+
+Very time sensitive.
+
+D. Exception / Urgency reasons
+7. Emergency Replenishment
+Immediate stock shortage situation
+
+Behavior:
+
+Fast approval route
+Sometimes bypasses normal thresholds
+8. Rush Order
+Expedited replenishment
+
+Linked with:
+
+Non-standard delivery approvals (AF rules)
+E. Controlled / Restricted reasons
+9. Limited Release
+Restricted product distribution
+
+Key rule from your FRS:
+
+Cannot mix with normal products
+
+Controlled via ZS10 mapping.
+
+10. New Product Introduction
+Launch / trial product placement
+
+Used for:
+
+Early adoption hospitals
+Clinical trials
+F. Master Data / System reasons
+11. PAR Adjustment Request (VERY IMPORTANT)
+
+From AF-007:
+
+Z23 = PAR adjustment request
+
+This is NOT replenishment.
+
+This is:
+
+Changing baseline PAR itself
+5. How system uses Request Reason (real execution flow)
+
+When user selects:
+
+Request Type + Request Reason
+
+System checks:
+
+Step 1: Validate mapping
+Request_Reasons_Assignment
+
+If not valid:
+
+→ block user
+
+Step 2: UI behavior changes
+
+Based on reason:
+
+Show/hide fields
+Enable justification
+Enable PAR warning
+Step 3: PAR logic applies or not
+
+Example:
+
+Reason	PAR Check
+Fill Up	YES
+Workshop	YES
+Emergency	YES (but escalated)
+PAR Adjustment	NO (special flow)
+Step 4: Approval flow triggered
+
+From AF table:
+
+One Time Approval
+Permanent Approval
+Sales Manager
+Demand Planner
+Step 5: SAP payload generated
+
+From Request Type + Reason mapping:
+
+KB / ZKB / KE / etc
+6. How LTC/STC fits into this system
+
+Now your confusion is cleared:
+
+LTC/STC is NOT a reason
+
+It is:
+
+Legal Status / Storage Model
+
+Defined in:
+
+3.6 Legal Status Table
+
+So system becomes:
+
+Request Type (Process)
++ Request Reason (Why)
++ Legal Status (LTC/STC)
++ Country config
+→ Final behavior
+7. Simple mental model (VERY IMPORTANT)
+
+Think like this:
+
+Request Type = WHAT process am I doing?
+Request Reason = WHY am I doing it?
+Legal Status (LTC/STC) = WHERE is inventory stored?
+Country/Sales Org = RULE SET
+8. Example end-to-end
+Case 1: Normal replenishment
+Type: Consignment Replenishment
+Reason: Fill Up
+Legal: LTC
+
+Result:
+
+PAR check applied
+No special approval if within limit
+Case 2: Workshop demand
+Type: Consignment Replenishment
+Reason: Workshop
+Legal: STC
+
+Result:
+
+Over PAR likely
+One-time approval
+Temporary stock
+Case 3: PAR correction
+Type: Consignment Replenishment
+Reason: Z23 PAR Adjustment
+
+Result:
+
+NOT a replenishment flow
+Goes to demand planner
+Changes master PAR
+9. Final takeaway
+
+If you remember only one thing:
+
+Request Reason = the real control switch of the entire WIO behavior
+
+LTC/STC only tells storage type
+Request Reason tells business logic + approval + SAP + PAR behavior
+
+If you want next step, I can draw you a complete end-to-end architecture diagram showing:
+
+Request Type vs Reason vs Legal Status vs SAP mapping
+PAR calculation engine flow
+Approval routing decision tree
+UI trigger points (Red/Yellow alerts)
+
+That will make you fully ready for BA, QA, or solution design discussions.
+
+diff request reason that are availlable in wio under consigment replensihment
+
+In your WIO (Warehouse Inventory Order) – Consignment Replenishment setup, the Request Reasons are fully configurable, so there is no single fixed global list in code.
+
+They are defined in:
+
+3.9 Request Reasons (master list of codes + descriptions)
+3.10 Request_Reasons_Assignment (which reasons are allowed for Consignment Replenishment per country / sales org / legal status)
+
+So what you actually see in WIO UI under Consignment Replenishment is:
+
+A filtered subset of Request Reasons mapped for that Request Type.
+
+1. Categories of Request Reasons in Consignment Replenishment WIO
+
+Even though exact values depend on configuration, in real implementation they fall into these standard groups:
+
+A. Standard Replenishment Reasons (Core PAR Flow)
+
+These are the most common ones you will ALWAYS see.
+
+1. Fill Up
+Normal replenishment to restore PAR
+Triggered when stock drops due to usage
+
+👉 Flow:
+
+PAR check applies
+Usually no special approval if within PAR
+2. Consumption Based Replenishment
+Based on actual usage trend
+Reflects increased clinical consumption
+
+👉 Flow:
+
+Often leads to Over PAR evaluation
+May trigger One-Time approval
+3. PAR Restoration
+System-driven or planned refill to bring stock back to target level
+Sometimes same as Fill Up but used for analytics separation
+B. Demand-Driven Reasons
+4. Forecast Demand
+Planned future usage (not current consumption)
+Used for upcoming surgeries or monthly planning
+
+👉 Flow:
+
+Can trigger PAR exceed scenario
+Approval depends on deviation
+5. Buffer Stock Increase
+Customer wants higher safety stock than PAR
+
+👉 Flow:
+
+Almost always triggers Permanent Approval
+May require Demand Planner approval
+C. Event-Based Reasons
+6. Workshop / Training Support
+Stock required for training, demos, workshops
+
+👉 Flow:
+
+Temporary increase
+Often STC-heavy usage
+One-Time approval common
+7. Surgical Case Support
+Specific patient / surgery requirement
+Highly time-bound requirement
+
+👉 Flow:
+
+Priority approval routing
+May bypass normal threshold logic in some configs
+D. Exception / Urgent Reasons
+8. Emergency Replenishment
+Critical stock shortage situation
+
+👉 Flow:
+
+Fast-track approval
+May trigger red alert immediately
+Higher priority than PAR logic
+9. Rush / Expedited Requirement
+Delivery urgency rather than stock logic
+Linked with logistics constraints
+
+👉 Flow:
+
+Often tied with Non-Standard Delivery approval (AF rules)
+E. Controlled / Restricted Reasons
+10. Limited Release Product Request
+Restricted products (mapped via ZS10 table)
+
+👉 Flow:
+
+Strict validation
+Cannot mix with normal products
+Account-specific availability only
+11. New Product Introduction (NPI)
+Product launch / trial placement
+
+👉 Flow:
+
+Controlled distribution
+Often restricted to selected hospitals
+F. Master Data / System Reasons
+12. PAR Adjustment Request (Z23)
+NOT a replenishment reason
+Used to change PAR value itself
+
+👉 Flow:
+
+Goes to Demand Planner
+Impacts master data, not just order
+2. What the user actually sees in WIO UI
+
+In the application:
+
+Request Type = Consignment Replenishment
+        ↓
+Request Reason dropdown shows only:
+(Filtered by Assignment table)
+
+So user does NOT see all reasons globally.
+
+They see only:
+
+Allowed Reasons =
+Request Reasons Assignment
+(Country + Sales Org + Legal Status + Request Type)
+3. Example (real system behavior)
+Example 1: India – LTC
+
+Available reasons:
+
+Fill Up
+Consumption Based Replenishment
+Forecast Demand
+Workshop
+Emergency
+Example 2: India – STC
+
+Available reasons:
+
+Fill Up
+Workshop
+Surgical Case Support
+Emergency
+Limited Release (if enabled)
+Example 3: Restricted Account
+
+Available reasons:
+
+Limited Release only
+Fill Up (maybe restricted)
+4. Key Rule (VERY IMPORTANT)
+
+From your FRS logic:
+
+Request Reason is not universal
+It is FILTERED per:
+- Country
+- Sales Organization
+- Request Type
+- Legal Status (LTC/STC)
+
+So:
+
+Same Request Reason may exist in system but NOT visible everywhere.
+
+5. Simple mental model
+
+Think like this:
+
+Request Reasons = Master List (all possible business scenarios)
+
+Request Reasons Assignment = Filter engine
+
+WIO UI = Final visible dropdown after filtering
+6. Final summary
+
+Under Consignment Replenishment in WIO, Request Reasons typically include:
+
+Fill Up (core replenishment)
+Consumption Based Replenishment
+Forecast Demand
+Buffer Stock Increase
+Workshop / Training Support
+Surgical Case Support
+Emergency Replenishment
+Rush / Expedited Request
+Limited Release Product Request
+PAR Adjustment (Z23 – system/master data change)
+
+BUT:
+
+👉 What the user sees depends entirely on configuration in Request_Reasons_Assignment
+
+      ↓
+
+Hospital Consignment Stock
+
+
+
+
