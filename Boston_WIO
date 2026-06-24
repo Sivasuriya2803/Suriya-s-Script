@@ -1,0 +1,373 @@
+1. What is WIO (Warehouse Inventory Order)?
+
+WIO is the ordering module inside Phoenix - My Orders 2.0 that allows users to create inventory-related orders.
+
+Think of WIO as the front-end application where users:
+
+Select a customer account (hospital, clinic, distributor, etc.)
+Select the order/request type
+Add products
+Submit the order
+Route the order through validations and approvals
+Send the final payload to SAP
+Typical Users
+
+From your document:
+
+User	Access
+Sales Rep	Own division customers
+Customer Care	All divisions
+Consignment Inventory Specialist (CIS)	All divisions except Direct Orders
+2. What is Consignment Inventory?
+
+Before understanding replenishment, understand consignment.
+
+Normal Order
+
+Hospital buys products immediately.
+
+Company Warehouse
+        ↓
+Hospital
+        ↓
+Invoice Generated
+
+Ownership transfers immediately.
+
+Consignment Inventory
+
+Products are stored inside the hospital but still belong to the company until consumed.
+
+Company Warehouse
+        ↓
+Hospital Consignment Stock
+        ↓
+Used in Surgery
+        ↓
+Consumption Recorded
+        ↓
+Hospital Billed
+
+Benefits:
+
+Hospital always has stock available.
+Company increases product availability.
+Critical surgeries are not delayed.
+3. What is Consignment Replenishment?
+
+After products are consumed, stock needs to be replenished.
+
+Example:
+
+Product	PAR Level	Current Stock
+Stent A	10	3
+
+Hospital consumed 7 units.
+
+User places replenishment order:
+
+Order Qty = 7
+
+After delivery:
+
+Current Stock = 10
+
+Back to PAR level.
+
+This process is called:
+
+Consignment Replenishment
+4. Long-Term vs Short-Term Consignment
+
+Your scope mentions:
+
+A. Long-Term Consignment Replenishment
+
+Permanent inventory maintained at customer site.
+
+Example:
+
+Hospital routinely keeps:
+
+20 Catheters
+10 Stents
+15 Guidewires
+
+Replenishment occurs regularly.
+
+B. Short-Term Consignment (STC)
+
+Temporary stock provided for:
+
+Workshops
+Training sessions
+Special surgical cases
+Product evaluations
+
+Example:
+
+Hospital requests extra stock for a weekend workshop.
+
+Current PAR = 10
+
+Additional Requirement = 15
+
+Total Needed = 25
+
+Temporary inventory is supplied.
+
+5. Request Type in WIO
+
+According to FR-001:
+
+User first selects:
+
+Request Type
+
+Example:
+
+Request Type
+-------------
+Consignment Replenishment
+
+After selecting Request Type:
+
+Request Reason
+
+becomes enabled.
+
+6. Why Request Reason Exists?
+
+The system needs to understand:
+
+Why are you replenishing?
+
+Different reasons may:
+
+Trigger approvals
+Use different SAP order types
+Use different stock locations
+Route differently
+7. Request Reason Concept
+
+The document references:
+
+Application & UI Configuration
+
+which means reasons are configurable.
+
+Although the exact list is not shown in your excerpt, typical Consignment Replenishment reasons are:
+
+Reason	Meaning
+Fill Up	Bring stock back to PAR level
+Consumption Replenishment	Replace consumed inventory
+Surgery Support	Support upcoming surgery
+Workshop/Event	Support training event
+Buffer Stock	Temporary increase
+Emergency Replenishment	Urgent stock need
+Limited Release Product	Approved restricted products
+
+Your document specifically gives one example:
+
+Request Type = Short Term Consignment
+Request Reason = Fill Up
+Reason Code = B01
+
+So Fill Up is definitely one of the configured reasons.
+
+8. What is PAR?
+
+PAR = Periodic Automatic Replenishment
+
+Think of it as:
+
+Target Inventory Level
+
+Example:
+
+Product	PAR
+Stent A	10
+
+Hospital currently has:
+
+Current Stock = 4
+
+System suggests:
+
+Order Qty = 6
+
+to reach PAR.
+
+9. PAR Check Workflow
+
+Example:
+
+Product
+
+PAR = 10
+
+Current Stock = 6
+
+User Orders = 4
+
+Result:
+
+Final Stock = 10
+
+Within PAR.
+
+No approval needed.
+
+PAR Exceeded
+
+PAR = 10
+
+Current Stock = 6
+
+User Orders = 10
+
+Result:
+
+Final Stock = 16
+
+PAR exceeded.
+
+System performs:
+
+PAR Validation
+16 > 10
+
+Approval required.
+
+10. Why PAR Approval Exists?
+
+To prevent:
+
+Overstocking
+Inventory waste
+Product expiry
+Excessive consignment liability
+
+So:
+
+Above PAR
+↓
+Approval Required
+11. PAR Change Suggestion
+
+Interesting feature mentioned:
+
+Users also have the option to submit suggested updates to the PAR levels
+
+Example:
+
+Current PAR:
+
+10
+
+Actual monthly usage:
+
+18
+
+Sales Rep believes PAR should become:
+
+20
+
+User submits:
+
+PAR Change Request
+
+for review.
+
+12. Limited Release Validation
+
+Document says:
+
+System shall support Limited Release
+
+These are products that cannot be freely ordered.
+
+Example:
+
+New product launch.
+
+Only approved hospitals can receive it.
+
+System checks:
+
+Customer Approved?
+      ↓
+      Yes → Continue
+      No → Error
+
+Usually validation comes from:
+
+ZS10 table
+Customer entitlement list
+Product release list
+13. SAP Integration Logic
+
+After order submission, WIO sends payload to SAP.
+
+Example configuration:
+
+Country	Request Type	SAP Order Type
+Taiwan	STC	KB
+Other Country	STC	ZKB
+
+This is controlled by:
+
+BR-001
+
+Configurable mapping.
+
+Example:
+
+User selects:
+
+Country = Taiwan
+Request Type = STC
+Reason = Fill Up
+
+System determines:
+
+Order Type = KB
+Stock Location = STC
+Reason Code = B01
+
+Then SAP payload is generated.
+
+14. End-to-End Consignment Replenishment Workflow
+User Opens WIO
+        ↓
+Select Customer
+        ↓
+Select Request Type
+        ↓
+Consignment Replenishment
+        ↓
+Select Request Reason
+        ↓
+Add Products
+        ↓
+System Checks:
+   - Stock
+   - PAR Level
+   - Limited Release
+   - Customer Eligibility
+        ↓
+PAR Exceeded?
+      /    \
+    No      Yes
+    ↓        ↓
+ Submit   Approval
+    ↓        ↓
+    └────────┘
+         ↓
+ SAP Payload Created
+         ↓
+ KB / ZKB Order Type
+         ↓
+ Warehouse Fulfillment
+         ↓
+ Stock Delivered
