@@ -1530,6 +1530,188 @@ BUT:
 
 Hospital Consignment Stock
 
+3. What each Request Reason actually means (business logic)
 
+I’ll explain each in real WIO behavior terms:
+
+1. B01 – CONSIGNMENT: Fill-Up (MOST IMPORTANT)
+Normal replenishment reason
+Behavior:
+PAR logic applies normally
+Standard consignment refill
+No special approvals if within PAR
+
+👉 This is your “baseline case”
+
+2. C02 – JPN: Short Term Consignment Order
+Temporary STC replenishment (Japan-specific)
+Behavior:
+Treated as STC logic
+Often short-term stock placement
+May use different SAP order type (KB/ZKB variant)
+
+👉 Country-specific behavior
+
+3. Z23 – New PAR / PAR Adjustment
+MASTER DATA CHANGE REQUEST
+Behavior:
+NOT a normal replenishment
+Triggers Demand Planner approval
+Can update PAR values
+Routed differently in AF-007 flow
+
+👉 This is the only one that changes system configuration logic
+
+4. Z24 – Advanced Stocks
+Increase buffer stock beyond normal PAR
+Behavior:
+Over PAR is expected
+Likely triggers Permanent Approval
+Used for strategic stocking
+
+👉 “intentional overstocking”
+
+5. Z25 – Short Expiry Replacement
+Replace near-expiry stock
+Behavior:
+Inventory replacement logic
+May not behave like normal PAR replenishment
+Often linked with write-off / return flow
+
+👉 This is more inventory correction than replenishment
+
+6. G44 – Evaluation Product
+Trial / demo usage product
+Behavior:
+Limited release logic applies
+Account-specific restriction
+Often bypasses normal PAR expectations
+
+👉 Used for clinical evaluation
+
+7. D03 – Marketing Samples
+Free samples for marketing
+Behavior:
+Not revenue order
+Different cost center mapping
+May bypass consignment billing logic
+
+👉 Financially different treatment
+
+8. F03 – Complaint Replacement
+Replacement due to product complaint
+Behavior:
+Linked with quality issue
+May bypass PAR
+Often zero-cost replacement
+
+👉 QA/complaint workflow integration
+
+9. G84 – Capital Equipment
+Non-consumable / capital item
+Behavior:
+NOT part of consignment logic
+May not use PAR at all
+Different approval + SAP flow
+
+👉 Different asset handling
+
+4. Why UI still looks identical
+
+Because WIO UI is built like this:
+
+Same screen
+     ↓
+Only backend rule engine changes
+     ↓
+Based on Request Reason
+
+So UI does NOT change layout, only:
+
+Validation rules
+Warning messages
+Approval triggers
+SAP payload structure
+5. What actually changes when you change Request Reason
+
+When user switches reason:
+
+A. Validation changes
+
+Example:
+
+Z23 → must go to Demand Planner
+B01 → normal flow
+B. Approval flow changes
+
+From your AF table:
+
+Over PAR + One Time → Sales Manager
+Over PAR + Permanent → Demand Planner
+Z23 → Special PAR workflow
+C. SAP payload changes
+
+Example:
+
+Reason	SAP Behavior
+B01	KB / ZKB normal
+Z23	PAR adjustment request
+D03	Sample stock posting
+F03	Complaint replacement flow
+D. Financial / Inventory logic changes
+Samples → no revenue
+Complaint → replacement logic
+Capital equipment → asset posting
+Consignment → stock movement only
+6. Why you don’t see frontend difference (key insight)
+
+Because this is NOT a UI-driven system.
+
+It is:
+
+Configuration-driven backend workflow engine
+
+UI only shows:
+
+Dropdown
+Alerts
+PAR flags
+
+But logic is hidden.
+
+7. Simple mental model
+
+Think like this:
+
+Request Type = screen type (Consignment Replenishment)
+Request Reason = backend behavior switch
+UI = same
+Backend logic = different
+8. When should UI actually differ?
+
+Only in cases like:
+
+Limited Release products
+STC vs LTC stock location
+Country-specific UI config
+UI Configuration table (section 4 of your doc)
+
+Otherwise:
+
+👉 UI remains same intentionally
+
+9. Final takeaway
+
+Even though you see:
+
+9 Request Reasons in dropdown
+
+The system is actually doing this:
+
+Same UI
+↓
+Different business rules triggered internally
+↓
+Different SAP + approval + financial behavior
 
 
