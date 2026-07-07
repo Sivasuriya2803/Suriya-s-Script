@@ -1,0 +1,320 @@
+The Roadmap (From Chess Bot → ChatGPT + RAG)
+
+I'll teach this as a university course mixed with a software engineering bootcamp.
+
+Module 0 — Foundations (How computers think)
+
+Goal:
+
+What is intelligence?
+What is a search problem?
+What is an algorithm?
+How do computers make decisions?
+
+You'll build:
+
+Tic Tac Toe AI
+Maze Solver
+Sudoku Solver
+
+Concepts:
+
+State
+Action
+Search Tree
+Cost
+Goal
+Module 1 — Classical AI (1950–1990)
+
+This is where AI started.
+
+People didn't train computers.
+
+They programmed intelligence manually.
+
+Topics:
+
+Breadth First Search
+Depth First Search
+Uniform Cost Search
+A*
+Minimax
+Alpha-Beta Pruning
+Expert Systems
+Rule Engines
+
+Projects:
+
+Chess AI
+Connect Four AI
+Path Finding Robot
+
+You will understand why Deep Blue defeated Garry Kasparov.
+
+Module 2 — Machine Learning
+
+Researchers realized:
+
+"Instead of writing rules, let the computer discover rules from data."
+
+Topics:
+
+Linear Regression
+Logistic Regression
+Decision Trees
+Random Forest
+Naive Bayes
+SVM
+KNN
+
+Projects:
+
+House Price Predictor
+Spam Detector
+Disease Prediction
+Module 3 — Neural Networks
+
+Now comes modern AI.
+
+Topics:
+
+Perceptron
+Gradient Descent
+Loss Functions
+Activation Functions
+Backpropagation
+
+Projects:
+
+Handwritten Digit Recognition
+Module 4 — Deep Learning
+
+Topics:
+
+CNN
+RNN
+LSTM
+GRU
+Autoencoders
+
+Projects:
+
+Image Classifier
+Sentiment Analysis
+Language Model
+Module 5 — Transformers
+
+This changed AI forever.
+
+Topics:
+
+Attention
+Self Attention
+Multi Head Attention
+Positional Encoding
+Encoder
+Decoder
+
+Projects:
+
+Tiny Transformer
+Module 6 — Large Language Models
+
+Topics:
+
+GPT
+BERT
+Tokenization
+Embeddings
+Context Window
+KV Cache
+Sampling
+Temperature
+
+Projects:
+
+Train a small GPT
+Module 7 — RAG (Retrieval-Augmented Generation)
+
+Topics:
+
+Embeddings
+Vector Database
+Chunking
+Retrieval
+Re-ranking
+Prompt Construction
+
+Projects:
+
+Chat with PDFs
+Company Knowledge Assistant
+Module 8 — AI Agents
+
+Topics:
+
+Tool Calling
+Memory
+Planning
+Reflection
+Multi-Agent Systems
+
+Projects:
+
+Coding Agent
+Research Agent
+Module 9 — Build ChatGPT Yourself
+
+Architecture:
+
+User
+
+↓
+
+Retriever
+
+↓
+
+Vector Database
+
+↓
+
+LLM
+
+↓
+
+Tool Calling
+
+↓
+
+Memory
+
+↓
+
+Response
+The Teaching Style
+
+For every topic we'll answer four questions:
+
+Why was it invented?
+How does it work mathematically?
+How do you implement it from scratch?
+How do modern AI systems use it?
+
+No black boxes.
+
+We'll write code ourselves instead of relying on libraries until we understand the core ideas.
+
+Lesson 1 — Before Chess AI
+
+Most people think the first AI was a chess bot.
+
+It wasn't.
+
+Chess was one of the earliest high-profile AI applications, but the core ideas behind it started earlier in attempts to solve general problem-solving tasks.
+
+To understand chess AI, we first need to answer a more basic question.
+
+What is intelligence?
+
+Suppose I ask you:
+
+"How do I get from my house to the nearest coffee shop?"
+
+Your brain doesn't magically know the answer.
+
+Instead, it searches through possibilities.
+
+Home
+
+↓
+
+Road A
+
+↓
+
+Road B
+
+↓
+
+Road C
+
+↓
+
+Coffee Shop
+
+Your brain explores choices until it reaches the goal.
+
+This is called search.
+
+This simple idea is one of the foundations of classical AI.
+
+AI's First Big Idea
+
+An AI needs four things:
+
+Current State
+
+↓
+
+Possible Actions
+
+↓
+
+Goal
+
+↓
+
+Choose Best Action
+
+That's it.
+
+Every classical AI system can be described with these four pieces.
+
+Let's see a tiny example.
+
+Imagine a robot in a small grid.
+
+S . .
+. X .
+. . G
+S = Start
+G = Goal
+X = Wall
+
+The robot can move:
+
+Up
+Down
+Left
+Right
+
+The AI asks:
+
+"Which move gets me closer to the goal without hitting a wall?"
+
+The AI repeats that process until it reaches G.
+
+Notice what's happening:
+
+State: the robot's current position.
+Actions: up, down, left, right.
+Goal: reach G.
+Decision process: search through possible moves.
+
+Chess works the same way, except:
+
+The state is the arrangement of all pieces.
+The actions are all legal chess moves.
+The goal is to checkmate the opponent.
+The search space is vastly larger.
+
+
+
+
+State (Node): Where you are.
+Action (Edge): A move you can make.
+Cost (Weight): The "price" of taking that action.
+Path: A sequence of actions.
+Goal: The destination.
+Search algorithm: The method used to find the best path.
