@@ -1,0 +1,210 @@
+Act as a Senior Backend Engineer.
+
+Help me build this project from scratch.
+
+We are currently in Stage 1: Foundation.
+
+Rules:
+- Do not generate the complete project at once.
+- Divide the project into small milestones.
+- Explain why each milestone is needed.
+- Explain every package before installing it.
+- Explain the folder structure before creating files.
+- Explain every file line by line.
+- Explain every API before implementing it.
+- Teach me how to test using Postman or Swagger.
+- Give me small exercises after each milestone.
+
+Stage 1 should include:
+- Project setup
+- Express server
+- Database connection
+- ORM setup
+- CRUD APIs
+- Request validation
+- Error handling
+- Logging
+- Clean folder structure
+
+Assume I am learning backend development and explain every decision.
+
+
+
+
+
+
+
+Act as a Senior Backend Engineer.
+
+We have completed Stage 1.
+
+Now teach Stage 2.
+
+Refactor the project into a production-ready architecture.
+
+Teach:
+- Controller layer
+- Service layer
+- Repository layer
+- JWT Authentication
+- Authorization
+- Role-Based Access Control
+- Middleware
+- Pagination
+- Filtering
+- Searching
+- Better validation
+
+Explain:
+- Why this architecture is better
+- Request lifecycle
+- Data flow
+- Responsibilities of every layer
+
+Do not skip explanations.
+Teach incrementally with milestones.
+
+
+
+
+
+Act as a Principal Backend Engineer.
+
+We have completed Stage 2.
+
+Now implement enterprise features.
+
+Teach:
+- Database relationships
+- Transactions
+- Audit logging
+- File uploads
+- Email notifications
+- Scheduled jobs
+- Background workers
+- Business rule validation
+- Configuration management
+- API versioning
+
+For every feature:
+- Explain why companies use it.
+- Explain architecture.
+- Explain database design.
+- Explain production concerns.
+- Explain debugging.
+- Give practical exercises.
+
+Teach step by step.
+
+
+
+
+Act as a Staff Backend Engineer.
+
+We have completed Stage 3.
+
+Now optimize the application for production.
+
+Teach:
+- Redis caching
+- Query optimization
+- Database indexing
+- Performance tuning
+- Rate limiting
+- Security best practices
+- Logging
+- Monitoring
+- Docker
+- Docker Compose
+- Unit testing
+- Integration testing
+
+Explain:
+- Why each optimization matters
+- How to benchmark performance
+- Common production issues
+- How to debug bottlenecks
+
+Teach incrementally with milestones.
+
+
+
+
+
+Act as a Principal Software Architect.
+
+We have completed Stage 4.
+
+Now teach the final production stage.
+
+Teach:
+- CI/CD basics
+- Deployment strategy
+- Health checks
+- API documentation
+- Observability
+- Metrics
+- Distributed tracing concepts
+- Production configuration
+- Secrets management
+- Scaling strategies
+- Microservice migration considerations
+- Maintainability
+- Refactoring
+- Technical debt management
+
+For every topic:
+- Explain why it matters.
+- Explain how real companies implement it.
+- Explain trade-offs.
+- Give real-world scenarios.
+- Give architecture diagrams where appropriate.
+- End each milestone with practical tasks and review questions.
+
+Do not rush. Teach as if preparing me to maintain enterprise systems independently.
+
+Stage 1
+│
+├── Project setup
+├── CRUD
+├── Database
+└── REST APIs
+
+        ↓
+
+Stage 2
+│
+├── Authentication
+├── Authorization
+├── Clean Architecture
+└── Business Logic
+
+        ↓
+
+Stage 3
+│
+├── Enterprise Features
+├── Jobs
+├── Notifications
+└── Audit
+
+        ↓
+
+Stage 4
+│
+├── Performance
+├── Security
+├── Docker
+└── Testing
+
+        ↓
+
+Stage 5
+│
+├── Deployment
+├── CI/CD
+├── Observability
+├── Scaling
+└── Production Readiness
+
+
