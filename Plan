@@ -1,685 +1,190 @@
-Java Backend — Day-Wise Switch Plan
-September 1 – December 31, 2026
-
-Target: Java Backend Engineer | 1–2 years experience | Product-based companies
-
-Daily Structure
-Weekdays — 3 hours
-60 min: DSA
-75 min: Java / Spring Boot / Backend
-30 min: SQL / System Design / CS fundamentals
-15 min: Revision + interview notes
-Weekends — 5–6 hours
-2 hours: DSA
-2 hours: Backend/project
-1 hour: Revision/system design
-1 hour: Mock interview or applications
-SEPTEMBER — Core Java + DSA + SQL + Spring Boot
-Week 1 — Java Foundations
-Sep 1
-Java OOP fundamentals
-Class/object
-Encapsulation
-Inheritance
-Polymorphism
-Solve 2 easy array problems
-Create interview notebook
-Sep 2
-Abstract class vs interface
-Method overloading vs overriding
-Composition vs inheritance
-2 array problems
-Sep 3
-String
-StringBuilder
-StringBuffer
-Immutability
-2 string problems
-Sep 4
-equals() vs ==
-hashCode()
-Contract between equals/hashCode
-2 hashing problems
-Sep 5
-ArrayList
-LinkedList
-Vector
-Collections complexity
-4 DSA problems
-Sep 6
-HashMap
-HashSet
-TreeMap
-PriorityQueue
-4 DSA problems
-Weekly revision
-Sep 7
-
-Weekly test
-
-5 DSA problems
-20 Java interview questions
-Review everything from Week 1
-Week 2 — Java Deep Dive
-Sep 8
-Generics
-Comparable
-Comparator
-Sorting
-2 problems
-Sep 9
-Exception handling
-Checked vs unchecked exceptions
-Custom exceptions
-2 problems
-Sep 10
-Java 8
-Lambda
-Functional interfaces
-Predicate/Function/Consumer
-2 problems
-Sep 11
-Streams
-map/filter/reduce
-Collectors
-2 problems
-Sep 12
-Optional
-Method references
-Stream interview questions
-4 DSA problems
-Sep 13
-JVM basics
-Stack vs heap
-Class loading
-Garbage collection
-4 DSA problems
-Sep 14
-
-Java mock interview
-
-30 Java questions
-3 DSA problems without help
-Review mistakes
-Week 3 — SQL + Database
-Sep 15
-SELECT
-WHERE
-ORDER BY
-GROUP BY
-10 SQL queries
-Sep 16
-INNER JOIN
-LEFT JOIN
-RIGHT JOIN
-SELF JOIN
-10 SQL queries
-Sep 17
-Subqueries
-EXISTS
-IN
-CASE
-10 queries
-Sep 18
-Primary key
-Foreign key
-Normalization
-Constraints
-5 queries
-Sep 19
-Indexes
-Clustered/non-clustered concepts
-Composite indexes
-EXPLAIN basics
-Sep 20
-Transactions
-ACID
-Isolation levels
-Dirty/non-repeatable/phantom reads
-Sep 21
-
-SQL test
-
-20 SQL questions
-Explain 5 queries verbally
-Revise database concepts
-Week 4 — Spring Boot Fundamentals
-Sep 22
-Spring vs Spring Boot
-IoC
-Dependency Injection
-Beans
-Sep 23
-@Component
-@Service
-@Repository
-@RestController
-Constructor injection
-Sep 24
-REST API
-GET/POST/PUT/PATCH/DELETE
-HTTP status codes
-Sep 25
-DTOs
-Request/response models
-Validation
-@Valid
-Sep 26
-Exception handling
-@ControllerAdvice
-Custom exceptions
-Logging
-Sep 27
-
-Build:
-
-User CRUD API
-PostgreSQL/MySQL
-JPA/Hibernate
-Sep 28
-
-Mini-project checkpoint
-
-Finish CRUD
-Add validation
-Add exception handling
-Push to GitHub
-OCTOBER — DSA + Advanced Spring Boot + Project
-Week 5 — Arrays & Strings
-Sep 29
-Two pointers
-3 problems
-Sep 30
-Sliding window
-3 problems
-Oct 1
-Prefix sum
-3 problems
-Oct 2
-Binary search
-3 problems
-Oct 3
-Sorting patterns
-4 problems
-Oct 4
-Mixed array/string problems
-5 problems
-Oct 5
-
-DSA test
-
-3 medium problems
-60-minute timer
-Week 6 — Linked List, Stack, Queue
-Oct 6
-Linked list fundamentals
-Reverse linked list
-3 problems
-Oct 7
-Fast/slow pointer
-Cycle detection
-3 problems
-Oct 8
-Stack
-Valid parentheses
-Monotonic stack basics
-3 problems
-Oct 9
-Queue
-Deque
-BFS basics
-3 problems
-Oct 10
-Mixed linked-list problems
-4 problems
-Oct 11
-Mixed stack/queue problems
-4 problems
-Oct 12
-
-DSA mock
-
-3 medium problems
-Explain solutions aloud
-Week 7 — JPA/Hibernate + Spring
-Oct 13
-JPA architecture
-Entity
-Repository
-Entity lifecycle
-Oct 14
-One-to-one
-One-to-many
-Many-to-many
-Oct 15
-Lazy vs eager loading
-N+1 problem
-Oct 16
-@Transactional
-Transaction propagation
-Rollback
-Oct 17
-Pagination
-Sorting
-Dynamic queries
-Oct 18
-Query optimization
-Indexes + Hibernate
-Oct 19
-
-Build day
-
-Implement relationships
-Pagination
-Search
-Sorting
-Week 8 — Security + Backend Fundamentals
-Oct 20
-Spring Security architecture
-Authentication vs authorization
-Oct 21
-JWT
-Access token
-Refresh token
-Password hashing
-Oct 22
-Security filters
-Role-based authorization
-Oct 23
-API security
-CORS
-CSRF
-Common backend vulnerabilities
-Oct 24
-Redis fundamentals
-Cache-aside pattern
-Oct 25
-Add Redis caching to project
-Oct 26
-
-Security/project checkpoint
-
-Login
-JWT
-Authorization
-Redis
-Test APIs
-NOVEMBER — Advanced DSA + Kafka + System Design + LLD
-Week 9 — Trees
-Oct 27
-Binary tree
-DFS
-3 problems
-Oct 28
-BFS
-Level order traversal
-3 problems
-Oct 29
-BST
-3 problems
-Oct 30
-Tree height/depth
-Diameter
-3 problems
-Oct 31
-LCA
-Path problems
-3 problems
-Nov 1
-Mixed tree problems
-5 problems
-Nov 2
-
-Tree mock
-
-3 medium problems
-Week 10 — Heap + Graph
-Nov 3
-Heap
-PriorityQueue
-3 problems
-Nov 4
-Top K pattern
-3 problems
-Nov 5
-Graph representation
-BFS
-DFS
-Nov 6
-Connected components
-Cycle detection
-Nov 7
-Topological sort
-Nov 8
-Mixed graph problems
-5 problems
-Nov 9
-
-DSA test
-
-4 medium problems
-90 minutes
-Week 11 — Kafka + Distributed Backend Basics
-Nov 10
-Why message queues?
-Kafka architecture
-Producer
-Consumer
-Topic
-Partition
-Nov 11
-Consumer groups
-Offsets
-Ordering
-Nov 12
-At-most-once
-At-least-once
-Exactly-once concepts
-Nov 13
-Idempotency
-Retry
-Dead-letter queue
-Nov 14
-
-Add Kafka to project:
-
-Order created event
-Notification consumer
-Nov 15
-Failure scenarios
-Kafka unavailable
-Duplicate events
-Nov 16
-
-Project architecture review
-
-Draw complete architecture
-Explain every component
-Week 12 — Low-Level Design
-Nov 17
-SOLID principles
-Nov 18
-Factory pattern
-Strategy pattern
-Builder pattern
-Nov 19
-Observer pattern
-Dependency Injection
-Nov 20
-
-Design:
-
-Parking lot
-Nov 21
-
-Design:
-
-Library management system
-Nov 22
-
-Design:
-
-Food delivery system
-Nov 23
-
-LLD mock
-
-60-minute design
-Explain classes/interfaces
-Week 13 — System Design Fundamentals
-Nov 24
-Scalability
-Vertical vs horizontal scaling
-Load balancing
-Nov 25
-Caching
-Redis
-Cache invalidation
-Nov 26
-Database scaling
-Read replicas
-Sharding basics
-Nov 27
-Message queues
-Async processing
-Nov 28
-Rate limiting
-API gateway
-Nov 29
-
-Design:
-
-URL shortener
-Nov 30
-
-Design:
-
-Order management system
-DECEMBER — Interview Mode
-
-December should be much less about learning new technologies and much more about interview execution.
-
-Week 14 — DSA Revision
-Dec 1
-Arrays revision
-3 problems
-Dec 2
-Strings/hashing
-3 problems
-Dec 3
-Sliding window/two pointers
-3 problems
-Dec 4
-Binary search
-3 problems
-Dec 5
-Linked list
-4 problems
-Dec 6
-Stack/queue
-4 problems
-Dec 7
-
-Full DSA mock
-
-3 medium problems
-90 minutes
-Week 15 — Java + Spring Interview
-Dec 8
-
-Core Java revision:
-
-OOP
-Collections
-Strings
-equals/hashCode
-Dec 9
-
-Java concurrency:
-
-Threads
-synchronized
-volatile
-locks
-Dec 10
-ExecutorService
-CompletableFuture
-ConcurrentHashMap
-Dec 11
-
-Spring:
-
-IoC
-DI
-Bean lifecycle
-Spring Boot
-Dec 12
-REST
-Validation
-Exception handling
-Security
-Dec 13
-JPA
-Hibernate
-Transactions
-N+1
-Dec 14
-
-Java/Spring mock interview
-
-Week 16 — Project + Backend Interview
-Dec 15
-Explain your project in 5 minutes
-Dec 16
-Explain project architecture
-Dec 17
-Explain database design
-Dec 18
-Explain Redis usage
-Dec 19
-Explain Kafka usage
-Dec 20
-Discuss production problems
-Debugging scenarios
-Failure scenarios
-Dec 21
-
-Full backend mock interview
-
-Week 17 — Resume + Applications
-Dec 22
-
-Rewrite resume around:
-
-Impact
-Scale
-Performance
-Ownership
-Technologies actually used
-Dec 23
-
-Create:
-
-1-page resume
-Updated LinkedIn
-GitHub cleanup
-Dec 24
-
-Prepare:
-
-60-second introduction
-5-minute project explanation
-Dec 25
-
-Prepare behavioral stories:
-
-Difficult bug
-Production issue
-Conflict
-Failure
-Achievement
-Ownership
-Dec 26
-
-Start targeted applications:
-
-Product companies
-SaaS companies
-Fintech
-E-commerce
-Startups with strong engineering teams
-Dec 27
-2 DSA problems
-1 system design
-5 applications
-2 recruiter messages
-Dec 28
-
-Full mock interview
-
-DSA
-Java
-Spring
-SQL
-Project
-Dec 29
-
-Identify weakest 5 areas.
-
-Spend the day fixing them.
-
-Dec 30
-
-Final revision:
-
-Java cheat sheet
-DSA patterns
-SQL
-Spring
-System design
-Project
-Dec 31
-
-Final assessment
-
-Do:
-
-2 DSA medium problems
-30 Java questions
-20 Spring questions
-10 SQL questions
-1 LLD
-1 system design
-5-minute project explanation
-
-Then create your January interview/application plan.
-
-Targets by December 31
-
-You should aim to finish approximately:
-
-120–150 DSA problems
-100+ Java/Spring interview questions
-50+ SQL problems
-10–15 system-design exercises
-5–7 LLD exercises
-1 strong backend project
-5+ mock interviews
-1 polished one-page resume
-GitHub with clean project documentation
-DSA Pattern Target
-
-Don't measure yourself only by problem count.
-
-You should recognize these patterns quickly:
-
-Hashing
-Two pointers
-Sliding window
-Prefix sum
-Binary search
-Stack
-Monotonic stack
-Linked list
-BFS
-DFS
-Trees
-Heap
-Graph
-Backtracking
-Basic DP
-Your Interview Readiness Test
-
-By December, you should be able to sit for an interview and handle:
-
-Round 1: DSA — 1–2 medium problems
-
-Round 2: Java + Spring Boot + SQL
-
-Round 3: Backend/LLD/System Design
-
-Round 4: Project + Managerial/Behavioral
-
-The biggest mistake would be spending September–December endlessly watching courses. Every learning day should produce something measurable: a solved problem, a piece of code, an interview answer, a project feature, or a mock interview.
-
-For a 1-year Java backend engineer, depth beats technology collection. Master Java + Spring Boot + SQL + DSA first, then demonstrate Redis/Kafka/system-design knowledge around a project.
+Absolutely. I’d make this your Sep 1–Dec 31 execution calendar, not just a syllabus.
+
+I’m keeping the separation strict:
+
+🧠 DSA: 1.5 hr weekdays / 2 hr weekends
+☕ Java/Spring/Backend: 1.5 hr weekdays / 2–2.5 hr weekends
+🏗️ Project + SQL/System Design: 1 hr weekdays / 1–1.5 hr weekends
+🔁 Revision/interview: included inside the weekend allocation
+Weekday total: 4 hr
+Saturday: 6 hr
+Sunday: 5 hr
+
+This is an intentionally more aggressive version of the uploaded plan, whose original weekday structure was 3 hours and weekend structure 5–6 hours.
+
+SEPTEMBER 2026 — FOUNDATION
+
+Goal: Core Java + SQL + Spring Boot fundamentals + ~50 DSA problems.
+
+Week 1
+Date	🧠 DSA — 1.5h	☕ Java/Spring — 1.5h	🏗️ Project — 1h	Total
+Sep 1 Tue	Arrays: traversal, min/max, frequency — 3 easy	OOP: class, object, encapsulation	Create GitHub repo + project structure	4h
+Sep 2 Wed	Arrays: in-place operations — 3 easy	Inheritance + super + constructor	Create User entity + DB config	4h
+Sep 3 Thu	Strings: character frequency — 3 easy	Polymorphism, overloading vs overriding	User table + repository	4h
+Sep 4 Fri	Hashing: HashMap frequency — 3 easy	Abstraction, interface vs abstract class	User service layer	4h
+Sep 5 Sat	Arrays + hashing — 5 problems	Composition vs inheritance; SOLID intro	User CRUD controller + DTO	6h
+Sep 6 Sun	Mixed arrays/hashing — 5 problems + review	Java OOP interview questions	Test CRUD APIs + weekly cleanup	5h
+Week 2
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Sep 7 Mon	HashSet + duplicates — 3	ArrayList vs LinkedList	Add validation to User API	4h
+Sep 8 Tue	Two pointers I — 3	ArrayList, LinkedList, Vector	Pagination skeleton	4h
+Sep 9 Wed	Two pointers II — 3	HashMap internals	User search endpoint	4h
+Sep 10 Thu	Sliding window I — 3	HashSet, TreeSet, TreeMap	Search + filtering	4h
+Sep 11 Fri	Sliding window II — 3	Comparable vs Comparator	Sorting API	4h
+Sep 12 Sat	Sliding window + two pointers — 6	Generics + Collections complexity	Complete User module	6h
+Sep 13 Sun	90-min DSA test: 4 problems	30 Java interview questions	Refactor + GitHub README	5h
+Week 3
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Sep 14 Mon	Prefix sum I — 3	Exception hierarchy	Global exception structure	4h
+Sep 15 Tue	Prefix sum II — 3	Checked vs unchecked exceptions	Custom exceptions	4h
+Sep 16 Wed	Binary search I — 3	Lambda expressions	Add service-layer lambdas where useful	4h
+Sep 17 Thu	Binary search II — 3	Functional interfaces	Stream-based service operations	4h
+Sep 18 Fri	Sorting patterns — 3	Streams: map/filter	Refactor response mapping	4h
+Sep 19 Sat	Binary search + sorting — 6	Streams: reduce/grouping/collectors	API response optimization	6h
+Sep 20 Sun	DSA test: 4 medium	Optional + method references	Review SQL + project	5h
+Week 4
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Sep 21 Mon	Stack basics — 3	JVM: stack vs heap	Analyze project memory usage	4h
+Sep 22 Tue	Stack: parentheses — 3	JVM class loading	Add application logging	4h
+Sep 23 Wed	Monotonic stack — 3	Garbage collection	Logging + error IDs	4h
+Sep 24 Thu	Queue/deque — 3	Spring vs Spring Boot, IoC	Create Spring Boot architecture	4h
+Sep 25 Fri	Stack/queue mixed — 3	DI + Bean lifecycle	Refactor to constructor injection	4h
+Sep 26 Sat	Stack + queue — 6	@Component, @Service, @Repository, @RestController	Complete layered architecture	6h
+Sep 27 Sun	90-min DSA mock	30 Java/Spring questions	Architecture review	5h
+Sep 28–30
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Sep 28 Mon	Arrays mixed — 3	REST: GET/POST/PUT/PATCH/DELETE	Finish CRUD module	4h
+Sep 29 Tue	Strings mixed — 3	HTTP status codes + REST principles	Swagger documentation	4h
+Sep 30 Wed	3 medium timed	DTOs + @Valid validation	Complete Phase 1 + GitHub README	4h
+OCTOBER 2026 — SPRING BOOT + ADVANCED DSA
+
+Goal: JPA + Security + Redis + ~100 cumulative DSA problems.
+
+Week 5
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Oct 1 Thu	Arrays: intervals — 3	@ControllerAdvice	Global exception handling	4h
+Oct 2 Fri	Matrix — 3	Spring validation	Validation across APIs	4h
+Oct 3 Sat	Arrays/strings — 6	JPA architecture + EntityManager	Add Product entity	6h
+Oct 4 Sun	5 mixed problems	Entity lifecycle	Product CRUD	5h
+Oct 5 Mon	Sliding window — 3	JPA Repository	Product repository	4h
+Oct 6 Tue	Two pointers — 3	One-to-One relationships	User profile relationship	4h
+Oct 7 Wed	Binary search — 3	One-to-Many	User → Orders	4h
+Week 6
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Oct 8 Thu	Linked List basics — 3	Many-to-Many	Product/category relationship	4h
+Oct 9 Fri	Reverse Linked List — 3	Lazy vs eager loading	Fix fetch strategy	4h
+Oct 10 Sat	Linked List — 6	N+1 problem	Identify/fix N+1	6h
+Oct 11 Sun	5 linked-list problems	@Transactional	Transactional order creation	5h
+Oct 12 Mon	Fast/slow pointer — 3	Transaction propagation	Test transaction behavior	4h
+Oct 13 Tue	Cycle detection — 3	Rollback rules	Failure/rollback test	4h
+Oct 14 Wed	Linked-list mixed — 3	Pagination + sorting	Product pagination API	4h
+Week 7
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Oct 15 Thu	Stack — 3	Dynamic queries	Search/filter products	4h
+Oct 16 Fri	Monotonic stack — 3	JPA query optimization	Optimize queries	4h
+Oct 17 Sat	Stack/queue — 6	SQL indexes + Hibernate	Add indexes + EXPLAIN	6h
+Oct 18 Sun	DSA mock — 4 medium	Spring/JPA interview questions	Database performance review	5h
+Oct 19 Mon	Trees intro — 3	Spring Security architecture	Add Security dependency	4h
+Oct 20 Tue	DFS tree — 3	Authentication vs authorization	User authentication	4h
+Oct 21 Wed	BFS tree — 3	Security filters	Configure SecurityFilterChain	4h
+Week 8
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Oct 22 Thu	Level-order — 3	JWT architecture	JWT generation	4h
+Oct 23 Fri	Tree height/depth — 3	Access + refresh tokens	Token refresh API	4h
+Oct 24 Sat	Trees — 6	Password hashing + BCrypt	Secure registration/login	6h
+Oct 25 Sun	5 tree problems	Role-based authorization	ADMIN/USER roles	5h
+Oct 26 Mon	BST — 3	CORS + CSRF	Secure APIs	4h
+Oct 27 Tue	BST — 3	Backend vulnerabilities	Security review	4h
+Oct 28 Wed	LCA/path — 3	Redis fundamentals	Add Redis dependency/config	4h
+Oct 29 Thu	Tree mixed — 3	Cache-aside pattern	Cache product reads	4h
+Oct 30 Fri	Heap intro — 3	Redis TTL/invalidation	Cache invalidation	4h
+Oct 31 Sat	6 mixed tree/heap	Redis deep dive + Spring caching	Complete Redis integration	6h
+NOVEMBER 2026 — ADVANCED DSA + KAFKA + SYSTEM DESIGN
+
+Goal: Graphs + DP + Kafka + microservices + LLD/System Design.
+
+Week 9
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Nov 1 Sun	DSA mock: 4 medium	Redis/Security revision	Architecture checkpoint	5h
+Nov 2 Mon	Heap/PriorityQueue — 3	Kafka: why message queues?	Add Kafka dependency	4h
+Nov 3 Tue	Top K — 3	Kafka producer/consumer	Create Order event	4h
+Nov 4 Wed	Heap mixed — 3	Topics/partitions	Create Order topic	4h
+Nov 5 Thu	Graph representation — 3	Kafka offsets	Consumer implementation	4h
+Nov 6 Fri	Graph BFS — 3	Consumer groups	Notification consumer	4h
+Nov 7 Sat	Graph BFS/DFS — 6	Ordering + partitions	Test event flow	6h
+Week 10
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Nov 8 Sun	5 graph problems	Kafka interview questions	Kafka architecture diagram	5h
+Nov 9 Mon	Connected components — 3	At-most-once delivery	Failure simulation	4h
+Nov 10 Tue	Cycle detection — 3	At-least-once delivery	Duplicate event handling	4h
+Nov 11 Wed	Topological sort — 3	Exactly-once concepts	Idempotent consumer	4h
+Nov 12 Thu	Graph DFS — 3	Retry strategies	Retry implementation	4h
+Nov 13 Fri	Shortest path intro — 3	Dead-letter queues	DLQ handling	4h
+Nov 14 Sat	Graphs — 6	Kafka failure scenarios	Complete Kafka integration	6h
+Week 11
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Nov 15 Sun	90-min DSA test	Kafka revision	Architecture review	5h
+Nov 16 Mon	Backtracking subsets — 3	Monolith vs microservices	Split logical services	4h
+Nov 17 Tue	Permutations — 3	Service-to-service communication	Order service design	4h
+Nov 18 Wed	Combination Sum — 3	API Gateway	Gateway configuration/design	4h
+Nov 19 Thu	Backtracking mixed — 3	Circuit breaker/resilience	Failure handling	4h
+Nov 20 Fri	DP fundamentals — 3	Config management	Externalized configuration	4h
+Nov 21 Sat	Backtracking + DP — 6	Microservice architecture	Refactor project architecture	6h
+Week 12
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project	Total
+Nov 22 Sun	5 DP problems	Microservices interview questions	Architecture documentation	5h
+Nov 23 Mon	1D DP — 3	SOLID principles	Refactor service classes	4h
+Nov 24 Tue	1D DP — 3	Factory pattern	Apply where appropriate	4h
+Nov 25 Wed	2D/Grid DP — 3	Strategy pattern	Apply strategy to business logic	4h
+Nov 26 Thu	Knapsack — 3	Builder pattern	DTO/request builders	4h
+Nov 27 Fri	Subsequence DP — 3	Observer pattern	Event-driven design review	4h
+Nov 28 Sat	DP — 6	LLD: Parking Lot	Complete class diagram + implementation	6h
+Nov 29 Sun	DSA mock: 4 medium	LLD: Library Management	Design classes/interfaces	5h
+Nov 30 Mon	Mixed advanced — 3	System Design: scalability	Draw project scaling architecture	4h
+DECEMBER 2026 — INTERVIEW EXECUTION
+
+Goal: Stop collecting technologies. Start performing like an interview candidate.
+
+The original plan also shifts December toward execution, revision and mocks.
+
+Week 13 — DSA Revision
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project/Interview	Total
+Dec 1 Tue	Arrays — 4 problems	OOP revision	Explain OOP aloud	4h
+Dec 2 Wed	Hashing — 4	Collections	HashMap internals	4h
+Dec 3 Thu	Sliding Window — 4	Strings/immutability	Project coding review	4h
+Dec 4 Fri	Two pointers — 4	equals/hashCode	20 interview questions	4h
+Dec 5 Sat	Binary Search — 5	Java 8 + Streams	Project API review	6h
+Dec 6 Sun	Stack/Queue — 5	Exception handling	Java mock interview	5h
+Dec 7 Mon	Full DSA mock — 3 medium	Weak-topic revision	Analyze mistakes	4h
+Week 14 — Java/Spring
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project/Interview	Total
+Dec 8 Tue	Linked List — 3	Core Java/OOP/Collections	30 Java questions	4h
+Dec 9 Wed	Trees — 3	Threads + synchronization	Explain concurrency	4h
+Dec 10 Thu	Trees — 3	volatile, locks	Concurrency coding practice	4h
+Dec 11 Fri	Heap — 3	ExecutorService	Async project scenario	4h
+Dec 12 Sat	Graphs — 5	CompletableFuture + ConcurrentHashMap	Java concurrency mock	6h
+Dec 13 Sun	Graphs — 5	Spring IoC/DI/Bean lifecycle	Spring mock	5h
+Dec 14 Mon	DSA mock — 3 medium	Spring Boot architecture	Review mistakes	4h
+Week 15 — Backend Interview
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project/Interview	Total
+Dec 15 Tue	DP — 3	REST + HTTP	Explain API design	4h
+Dec 16 Wed	DP — 3	Validation + exceptions	Explain error handling	4h
+Dec 17 Thu	Backtracking — 3	JPA/Hibernate	Explain entity lifecycle	4h
+Dec 18 Fri	Graphs — 3	Transactions + N+1	Explain optimization	4h
+Dec 19 Sat	Mixed — 5	Security + JWT	Explain complete auth flow	6h
+Dec 20 Sun	Mixed — 5	Redis + Kafka	Explain distributed architecture	5h
+Dec 21 Mon	DSA mock	Java/Spring rapid-fire	Full backend mock	4h
+Week 16 — Project + System Design
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project/Interview	Total
+Dec 22 Tue	Arrays/Hashing — 3	Project technology revision	5-minute project explanation	4h
+Dec 23 Wed	Sliding Window — 3	DB/JPA revision	Explain database schema	4h
+Dec 24 Thu	Trees — 3	Redis revision	Explain caching decision	4h
+Dec 25 Fri	Graphs — 3	Kafka revision	Explain event flow	4h
+Dec 26 Sat	Mixed — 5	Microservices revision	Production failure scenarios	6h
+Dec 27 Sun	DSA + SQL mock	LLD	Parking Lot / Food Delivery	5h
+Dec 28 Mon	2 medium timed	System Design	URL Shortener	4h
+Final 3 Days
+Date	🧠 DSA	☕ Java/Spring	🏗️ Project/Interview	Total
+Dec 29 Tue	Weakest DSA 3 topics — 4	Weakest Java/Spring 3 topics	Fix weakest 5 areas	4h
+Dec 30 Wed	Pattern revision — 3	Java + Spring + SQL cheat sheets	Final project rehearsal	4h
+Dec 31 Thu	Final: 2 medium / 120 min	30 Java + 25 Spring questions	10 SQL + 1 LLD + 1 SD + 5-min project
