@@ -1,0 +1,685 @@
+Java Backend — Day-Wise Switch Plan
+September 1 – December 31, 2026
+
+Target: Java Backend Engineer | 1–2 years experience | Product-based companies
+
+Daily Structure
+Weekdays — 3 hours
+60 min: DSA
+75 min: Java / Spring Boot / Backend
+30 min: SQL / System Design / CS fundamentals
+15 min: Revision + interview notes
+Weekends — 5–6 hours
+2 hours: DSA
+2 hours: Backend/project
+1 hour: Revision/system design
+1 hour: Mock interview or applications
+SEPTEMBER — Core Java + DSA + SQL + Spring Boot
+Week 1 — Java Foundations
+Sep 1
+Java OOP fundamentals
+Class/object
+Encapsulation
+Inheritance
+Polymorphism
+Solve 2 easy array problems
+Create interview notebook
+Sep 2
+Abstract class vs interface
+Method overloading vs overriding
+Composition vs inheritance
+2 array problems
+Sep 3
+String
+StringBuilder
+StringBuffer
+Immutability
+2 string problems
+Sep 4
+equals() vs ==
+hashCode()
+Contract between equals/hashCode
+2 hashing problems
+Sep 5
+ArrayList
+LinkedList
+Vector
+Collections complexity
+4 DSA problems
+Sep 6
+HashMap
+HashSet
+TreeMap
+PriorityQueue
+4 DSA problems
+Weekly revision
+Sep 7
+
+Weekly test
+
+5 DSA problems
+20 Java interview questions
+Review everything from Week 1
+Week 2 — Java Deep Dive
+Sep 8
+Generics
+Comparable
+Comparator
+Sorting
+2 problems
+Sep 9
+Exception handling
+Checked vs unchecked exceptions
+Custom exceptions
+2 problems
+Sep 10
+Java 8
+Lambda
+Functional interfaces
+Predicate/Function/Consumer
+2 problems
+Sep 11
+Streams
+map/filter/reduce
+Collectors
+2 problems
+Sep 12
+Optional
+Method references
+Stream interview questions
+4 DSA problems
+Sep 13
+JVM basics
+Stack vs heap
+Class loading
+Garbage collection
+4 DSA problems
+Sep 14
+
+Java mock interview
+
+30 Java questions
+3 DSA problems without help
+Review mistakes
+Week 3 — SQL + Database
+Sep 15
+SELECT
+WHERE
+ORDER BY
+GROUP BY
+10 SQL queries
+Sep 16
+INNER JOIN
+LEFT JOIN
+RIGHT JOIN
+SELF JOIN
+10 SQL queries
+Sep 17
+Subqueries
+EXISTS
+IN
+CASE
+10 queries
+Sep 18
+Primary key
+Foreign key
+Normalization
+Constraints
+5 queries
+Sep 19
+Indexes
+Clustered/non-clustered concepts
+Composite indexes
+EXPLAIN basics
+Sep 20
+Transactions
+ACID
+Isolation levels
+Dirty/non-repeatable/phantom reads
+Sep 21
+
+SQL test
+
+20 SQL questions
+Explain 5 queries verbally
+Revise database concepts
+Week 4 — Spring Boot Fundamentals
+Sep 22
+Spring vs Spring Boot
+IoC
+Dependency Injection
+Beans
+Sep 23
+@Component
+@Service
+@Repository
+@RestController
+Constructor injection
+Sep 24
+REST API
+GET/POST/PUT/PATCH/DELETE
+HTTP status codes
+Sep 25
+DTOs
+Request/response models
+Validation
+@Valid
+Sep 26
+Exception handling
+@ControllerAdvice
+Custom exceptions
+Logging
+Sep 27
+
+Build:
+
+User CRUD API
+PostgreSQL/MySQL
+JPA/Hibernate
+Sep 28
+
+Mini-project checkpoint
+
+Finish CRUD
+Add validation
+Add exception handling
+Push to GitHub
+OCTOBER — DSA + Advanced Spring Boot + Project
+Week 5 — Arrays & Strings
+Sep 29
+Two pointers
+3 problems
+Sep 30
+Sliding window
+3 problems
+Oct 1
+Prefix sum
+3 problems
+Oct 2
+Binary search
+3 problems
+Oct 3
+Sorting patterns
+4 problems
+Oct 4
+Mixed array/string problems
+5 problems
+Oct 5
+
+DSA test
+
+3 medium problems
+60-minute timer
+Week 6 — Linked List, Stack, Queue
+Oct 6
+Linked list fundamentals
+Reverse linked list
+3 problems
+Oct 7
+Fast/slow pointer
+Cycle detection
+3 problems
+Oct 8
+Stack
+Valid parentheses
+Monotonic stack basics
+3 problems
+Oct 9
+Queue
+Deque
+BFS basics
+3 problems
+Oct 10
+Mixed linked-list problems
+4 problems
+Oct 11
+Mixed stack/queue problems
+4 problems
+Oct 12
+
+DSA mock
+
+3 medium problems
+Explain solutions aloud
+Week 7 — JPA/Hibernate + Spring
+Oct 13
+JPA architecture
+Entity
+Repository
+Entity lifecycle
+Oct 14
+One-to-one
+One-to-many
+Many-to-many
+Oct 15
+Lazy vs eager loading
+N+1 problem
+Oct 16
+@Transactional
+Transaction propagation
+Rollback
+Oct 17
+Pagination
+Sorting
+Dynamic queries
+Oct 18
+Query optimization
+Indexes + Hibernate
+Oct 19
+
+Build day
+
+Implement relationships
+Pagination
+Search
+Sorting
+Week 8 — Security + Backend Fundamentals
+Oct 20
+Spring Security architecture
+Authentication vs authorization
+Oct 21
+JWT
+Access token
+Refresh token
+Password hashing
+Oct 22
+Security filters
+Role-based authorization
+Oct 23
+API security
+CORS
+CSRF
+Common backend vulnerabilities
+Oct 24
+Redis fundamentals
+Cache-aside pattern
+Oct 25
+Add Redis caching to project
+Oct 26
+
+Security/project checkpoint
+
+Login
+JWT
+Authorization
+Redis
+Test APIs
+NOVEMBER — Advanced DSA + Kafka + System Design + LLD
+Week 9 — Trees
+Oct 27
+Binary tree
+DFS
+3 problems
+Oct 28
+BFS
+Level order traversal
+3 problems
+Oct 29
+BST
+3 problems
+Oct 30
+Tree height/depth
+Diameter
+3 problems
+Oct 31
+LCA
+Path problems
+3 problems
+Nov 1
+Mixed tree problems
+5 problems
+Nov 2
+
+Tree mock
+
+3 medium problems
+Week 10 — Heap + Graph
+Nov 3
+Heap
+PriorityQueue
+3 problems
+Nov 4
+Top K pattern
+3 problems
+Nov 5
+Graph representation
+BFS
+DFS
+Nov 6
+Connected components
+Cycle detection
+Nov 7
+Topological sort
+Nov 8
+Mixed graph problems
+5 problems
+Nov 9
+
+DSA test
+
+4 medium problems
+90 minutes
+Week 11 — Kafka + Distributed Backend Basics
+Nov 10
+Why message queues?
+Kafka architecture
+Producer
+Consumer
+Topic
+Partition
+Nov 11
+Consumer groups
+Offsets
+Ordering
+Nov 12
+At-most-once
+At-least-once
+Exactly-once concepts
+Nov 13
+Idempotency
+Retry
+Dead-letter queue
+Nov 14
+
+Add Kafka to project:
+
+Order created event
+Notification consumer
+Nov 15
+Failure scenarios
+Kafka unavailable
+Duplicate events
+Nov 16
+
+Project architecture review
+
+Draw complete architecture
+Explain every component
+Week 12 — Low-Level Design
+Nov 17
+SOLID principles
+Nov 18
+Factory pattern
+Strategy pattern
+Builder pattern
+Nov 19
+Observer pattern
+Dependency Injection
+Nov 20
+
+Design:
+
+Parking lot
+Nov 21
+
+Design:
+
+Library management system
+Nov 22
+
+Design:
+
+Food delivery system
+Nov 23
+
+LLD mock
+
+60-minute design
+Explain classes/interfaces
+Week 13 — System Design Fundamentals
+Nov 24
+Scalability
+Vertical vs horizontal scaling
+Load balancing
+Nov 25
+Caching
+Redis
+Cache invalidation
+Nov 26
+Database scaling
+Read replicas
+Sharding basics
+Nov 27
+Message queues
+Async processing
+Nov 28
+Rate limiting
+API gateway
+Nov 29
+
+Design:
+
+URL shortener
+Nov 30
+
+Design:
+
+Order management system
+DECEMBER — Interview Mode
+
+December should be much less about learning new technologies and much more about interview execution.
+
+Week 14 — DSA Revision
+Dec 1
+Arrays revision
+3 problems
+Dec 2
+Strings/hashing
+3 problems
+Dec 3
+Sliding window/two pointers
+3 problems
+Dec 4
+Binary search
+3 problems
+Dec 5
+Linked list
+4 problems
+Dec 6
+Stack/queue
+4 problems
+Dec 7
+
+Full DSA mock
+
+3 medium problems
+90 minutes
+Week 15 — Java + Spring Interview
+Dec 8
+
+Core Java revision:
+
+OOP
+Collections
+Strings
+equals/hashCode
+Dec 9
+
+Java concurrency:
+
+Threads
+synchronized
+volatile
+locks
+Dec 10
+ExecutorService
+CompletableFuture
+ConcurrentHashMap
+Dec 11
+
+Spring:
+
+IoC
+DI
+Bean lifecycle
+Spring Boot
+Dec 12
+REST
+Validation
+Exception handling
+Security
+Dec 13
+JPA
+Hibernate
+Transactions
+N+1
+Dec 14
+
+Java/Spring mock interview
+
+Week 16 — Project + Backend Interview
+Dec 15
+Explain your project in 5 minutes
+Dec 16
+Explain project architecture
+Dec 17
+Explain database design
+Dec 18
+Explain Redis usage
+Dec 19
+Explain Kafka usage
+Dec 20
+Discuss production problems
+Debugging scenarios
+Failure scenarios
+Dec 21
+
+Full backend mock interview
+
+Week 17 — Resume + Applications
+Dec 22
+
+Rewrite resume around:
+
+Impact
+Scale
+Performance
+Ownership
+Technologies actually used
+Dec 23
+
+Create:
+
+1-page resume
+Updated LinkedIn
+GitHub cleanup
+Dec 24
+
+Prepare:
+
+60-second introduction
+5-minute project explanation
+Dec 25
+
+Prepare behavioral stories:
+
+Difficult bug
+Production issue
+Conflict
+Failure
+Achievement
+Ownership
+Dec 26
+
+Start targeted applications:
+
+Product companies
+SaaS companies
+Fintech
+E-commerce
+Startups with strong engineering teams
+Dec 27
+2 DSA problems
+1 system design
+5 applications
+2 recruiter messages
+Dec 28
+
+Full mock interview
+
+DSA
+Java
+Spring
+SQL
+Project
+Dec 29
+
+Identify weakest 5 areas.
+
+Spend the day fixing them.
+
+Dec 30
+
+Final revision:
+
+Java cheat sheet
+DSA patterns
+SQL
+Spring
+System design
+Project
+Dec 31
+
+Final assessment
+
+Do:
+
+2 DSA medium problems
+30 Java questions
+20 Spring questions
+10 SQL questions
+1 LLD
+1 system design
+5-minute project explanation
+
+Then create your January interview/application plan.
+
+Targets by December 31
+
+You should aim to finish approximately:
+
+120–150 DSA problems
+100+ Java/Spring interview questions
+50+ SQL problems
+10–15 system-design exercises
+5–7 LLD exercises
+1 strong backend project
+5+ mock interviews
+1 polished one-page resume
+GitHub with clean project documentation
+DSA Pattern Target
+
+Don't measure yourself only by problem count.
+
+You should recognize these patterns quickly:
+
+Hashing
+Two pointers
+Sliding window
+Prefix sum
+Binary search
+Stack
+Monotonic stack
+Linked list
+BFS
+DFS
+Trees
+Heap
+Graph
+Backtracking
+Basic DP
+Your Interview Readiness Test
+
+By December, you should be able to sit for an interview and handle:
+
+Round 1: DSA — 1–2 medium problems
+
+Round 2: Java + Spring Boot + SQL
+
+Round 3: Backend/LLD/System Design
+
+Round 4: Project + Managerial/Behavioral
+
+The biggest mistake would be spending September–December endlessly watching courses. Every learning day should produce something measurable: a solved problem, a piece of code, an interview answer, a project feature, or a mock interview.
+
+For a 1-year Java backend engineer, depth beats technology collection. Master Java + Spring Boot + SQL + DSA first, then demonstrate Redis/Kafka/system-design knowledge around a project.
