@@ -1,0 +1,99 @@
+3-Month LeetCode Plan
+Month 1 — Core DSA Patterns
+Day	Pattern	Easy	Medium	Hard
+1	Arrays	Two Sum	3Sum	First Missing Positive
+2	Arrays	Best Time to Buy/Sell Stock	Product of Array Except Self	Maximum Product Subarray
+3	Hashing	Contains Duplicate	Group Anagrams	Substring with Concatenation of All Words
+4	Strings	Valid Anagram	Longest Substring Without Repeating Characters	Minimum Window Substring
+5	Two Pointers	Valid Palindrome	Container With Most Water	Trapping Rain Water
+6	Two Pointers	Move Zeroes	3Sum Closest	Minimum Number of Moves to Make Array Complementary
+7	Sliding Window	Maximum Average Subarray I	Longest Repeating Character Replacement	Sliding Window Maximum
+8	Sliding Window	Find All Anagrams in a String	Permutation in String	Minimum Window Substring
+9	Binary Search	Binary Search	Search in Rotated Sorted Array	Median of Two Sorted Arrays
+10	Binary Search	Search Insert Position	Find Minimum in Rotated Sorted Array	Kth Smallest Element in a Sorted Matrix
+11	Binary Search	Sqrt(x)	Koko Eating Bananas	Split Array Largest Sum
+12	Sorting	Merge Sorted Array	Sort Colors	Count of Smaller Numbers After Self
+13	Intervals	Summary Ranges	Merge Intervals	Employee Free Time
+14	Intervals	Meeting Rooms	Meeting Rooms II	Minimum Number of Arrows to Burst Balloons
+15	Linked List	Reverse Linked List	Add Two Numbers	Merge k Sorted Lists
+16	Linked List	Middle of Linked List	Remove Nth Node From End	Reverse Nodes in k-Group
+17	Linked List	Linked List Cycle	Reorder List	Copy List with Random Pointer
+18	Linked List	Palindrome Linked List	Intersection of Two Linked Lists	Merge k Sorted Lists
+19	Stack	Valid Parentheses	Daily Temperatures	Largest Rectangle in Histogram
+20	Stack	Min Stack	Evaluate Reverse Polish Notation	Basic Calculator
+21	Monotonic Stack	Next Greater Element I	Next Greater Element II	Trapping Rain Water
+22	Queue/Deque	Number of Recent Calls	Design Circular Queue	Sliding Window Maximum
+23	Recursion	Fibonacci Number	Pow(x,n)	Regular Expression Matching
+24	Backtracking	Letter Case Permutation	Subsets	N-Queens
+25	Backtracking	Binary Watch	Combination Sum	Sudoku Solver
+26	Backtracking	Generate Parentheses	Permutations	Word Search II
+27	Matrix	Richest Customer Wealth	Spiral Matrix	Sudoku Solver
+28	Matrix	Transpose Matrix	Rotate Image	Maximal Rectangle
+29	Review	Two Sum	Longest Substring Without Repeating Characters	Median of Two Sorted Arrays
+30	Review	Valid Parentheses	Merge Intervals	Largest Rectangle in Histogram
+
+Month 2 — Trees, Graphs, Heaps & Greedy
+Day	Pattern	Easy	Medium	Hard
+31	Binary Trees	Maximum Depth	Binary Tree Level Order Traversal	Binary Tree Maximum Path Sum
+32	Binary Trees	Invert Binary Tree	Validate BST	Recover Binary Search Tree
+33	BST	Search in BST	Kth Smallest Element in BST	Serialize and Deserialize BST
+34	Tree DFS	Same Tree	Path Sum II	Binary Tree Cameras
+35	Tree BFS	Minimum Depth	Zigzag Level Order Traversal	Vertical Order Traversal
+36	Tree Construction	Convert Sorted Array to BST	Construct Tree from Preorder/Inorder	Serialize and Deserialize Binary Tree
+37	Tree Ancestor	Lowest Common Ancestor of BST	Lowest Common Ancestor of Binary Tree	Lowest Common Ancestor of Deepest Leaves
+38	Tree Views	Symmetric Tree	Right Side View	Binary Tree Maximum Path Sum
+39	Heap	Kth Largest Element	Top K Frequent Elements	Find Median from Data Stream
+40	Heap	Last Stone Weight	K Closest Points to Origin	Merge k Sorted Lists
+41	Heap	Kth Largest Element in a Stream	Task Scheduler	Minimum Number of Refueling Stops
+42	Priority Queue	Relative Ranks	Reorganize String	IPO
+43	Greedy	Assign Cookies	Jump Game	Candy
+44	Greedy	Best Time to Buy/Sell Stock II	Gas Station	Minimum Number of Taps to Open
+45	Greedy	Lemonade Change	Partition Labels	Candy
+46	Graph BFS	Find if Path Exists	Number of Islands	Word Ladder
+47	Graph DFS	Flood Fill	Clone Graph	Critical Connections in a Network
+48	Graph Traversal	Find Center of Star Graph	Course Schedule	Reconstruct Itinerary
+49	Topological Sort	Find Champion	Course Schedule II	Alien Dictionary
+50	Union Find	Number of Provinces	Redundant Connection	Number of Islands II
+51	Union Find	Find if Path Exists	Accounts Merge	Similar String Groups
+52	Shortest Path	Network Delay Time	Cheapest Flights Within K Stops	Shortest Path Visiting All Nodes
+53	Dijkstra	Path With Minimum Effort	Network Delay Time	Swim in Rising Water
+54	Graph BFS	Rotting Oranges	Open the Lock	Word Ladder
+55	Graph DFS	Number of Connected Components	Surrounded Regions	Making A Large Island
+56	Trie	Longest Common Prefix	Implement Trie	Word Search II
+57	Trie	Search Suggestions	Design Add and Search Words	Maximum XOR of Two Numbers
+58	Graph Review	Number of Islands	Course Schedule	Critical Connections
+59	Heap Review	Kth Largest	Top K Frequent	Find Median from Data Stream
+60	Greedy Review	Jump Game	Gas Station	Candy
+
+Month 3 — Dynamic Programming + Advanced Patterns
+Day	Pattern	Easy	Medium	Hard
+61	DP 1D	Climbing Stairs	House Robber	Edit Distance
+62	DP 1D	Min Cost Climbing Stairs	House Robber II	Maximum Product Subarray
+63	DP	Fibonacci Number	Decode Ways	Distinct Subsequences
+64	DP	N-th Tribonacci	Coin Change	Coin Change II
+65	Knapsack	Partition Equal Subset Sum	Target Sum	Ones and Zeroes
+66	Knapsack	Last Stone Weight	Combination Sum IV	Profitable Schemes
+67	Subsequence DP	Is Subsequence	Longest Increasing Subsequence	Russian Doll Envelopes
+68	LCS	Longest Common Subsequence	Uncrossed Lines	Shortest Common Supersequence
+69	String DP	Palindrome Number	Longest Palindromic Substring	Palindrome Partitioning II
+70	String DP	Valid Palindrome	Word Break	Word Break II
+71	Interval DP	Minimum Cost to Cut a Stick	Burst Balloons	Strange Printer
+72	Grid DP	Unique Paths	Unique Paths II	Dungeon Game
+73	Grid DP	Minimum Path Sum	Triangle	Cherry Pickup
+74	DP + Bitmask	Counting Bits	Partition to K Equal Sum Subsets	Shortest Path Visiting All Nodes
+75	State Machine DP	Best Time to Buy/Sell Stock	Best Time with Cooldown	Best Time with Transaction Fee
+76	State Machine DP	Best Time to Buy/Sell Stock II	Best Time with Cooldown	Best Time III
+77	Divide & Conquer	Majority Element	Sort an Array	Median of Two Sorted Arrays
+78	Merge Sort	Merge Sorted Array	Sort an Array	Count of Smaller Numbers After Self
+79	Bit Manipulation	Single Number	Single Number II	Maximum XOR for Each Query
+80	Bit Manipulation	Number of 1 Bits	Counting Bits	Maximum XOR of Two Numbers
+81	Prefix Sum	Running Sum	Subarray Sum Equals K	Number of Submatrices That Sum to Target
+82	Prefix Sum	Find Pivot Index	Contiguous Array	Maximum Sum of 3 Non-Overlapping Subarrays
+83	Difference Array	Range Addition	Car Pooling	Corporate Flight Bookings
+84	Sliding Window	Maximum Average Subarray	Longest Subarray with K Frequency	Minimum Window Substring
+85	Two Pointers	Is Subsequence	Subarray Product Less Than K	Trapping Rain Water
+86	Binary Search	Binary Search	Capacity to Ship Packages	Median of Two Sorted Arrays
+87	Binary Search on Answer	Guess Number Higher or Lower	Minimize Maximum of Array	Find Minimum Time to Finish All Jobs
+88	Monotonic Stack	Next Greater Element	Daily Temperatures	Largest Rectangle in Histogram
+89	Monotonic Queue	Sliding Window Maximum	Constrained Subsequence Sum	Shortest Subarray with Sum at Least K
+90	Final Mixed Review	Two Sum	LRU Cache	Merge k Sorted Lists
