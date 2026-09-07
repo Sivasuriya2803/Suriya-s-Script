@@ -97,3 +97,1203 @@ Day	Pattern	Easy	Medium	Hard
 88	Monotonic Stack	Next Greater Element	Daily Temperatures	Largest Rectangle in Histogram
 89	Monotonic Queue	Sliding Window Maximum	Constrained Subsequence Sum	Shortest Subarray with Sum at Least K
 90	Final Mixed Review	Two Sum	LRU Cache	Merge k Sorted Lists
+
+
+
+
+
+
+Project Development 
+
+
+
+
+
+
+
+
+
+
+
+Project: ShopFlow — High-Scale E-Commerce & Order Management Platform
+Stack
+
+Backend: Java 21, Spring Boot 3, Spring Security, JPA/Hibernate
+Database: PostgreSQL
+Cache: Redis
+Messaging: Kafka
+Search: Elasticsearch/OpenSearch
+Frontend: React + TypeScript
+Testing: JUnit 5, Mockito, Testcontainers
+API: REST + WebSocket where useful
+Deployment: Docker + AWS
+Architecture: Modular monolith first → selected services/event-driven components
+DevOps: Docker, GitHub Actions, AWS
+The objective isn't just to make an e-commerce website.
+
+You are going to build a production-style distributed order platform that forces you to understand:
+
+DSA + Java + Spring Boot + SQL + transactions + concurrency + caching + messaging + system design + AWS
+
+That's much closer to the skill combination you want.
+
+90-Day Project Roadmap
+Month 1 — Strong Java + Spring Boot Backend
+Week 1 — Architecture + Java foundations
+Day	Backend	DSA/Interview
+1	Project architecture, Git, Maven, package structure	Arrays
+2	Java records, enums, interfaces, inheritance	HashMap
+3	SOLID principles	Strings
+4	Collections deeply	Two Pointers
+5	Generics + Comparable/Comparator	Sliding Window
+6	Streams + Lambdas	Binary Search
+7	Exceptions + custom exceptions	Weekly DSA review
+
+Build
+Create:
+
+shopflow/
+├── backend/
+│   ├── auth/
+│   ├── user/
+│   ├── product/
+│   ├── inventory/
+│   ├── cart/
+│   ├── order/
+│   ├── payment/
+│   └── common/
+│
+└── frontend/
+
+Don't start with microservices.
+
+Start with a modular monolith.
+
+This is important because you'll learn architecture without creating unnecessary operational complexity.
+
+Week 2 — Spring Boot Fundamentals
+Day 8
+Spring Boot project setup.
+
+Learn:
+
+Dependency Injection
+IoC
+Beans
+Configuration
+Profiles
+Build:
+
+ProductController
+ProductService
+ProductRepository
+
+Day 9
+REST API design.
+
+Implement:
+
+POST   /api/products
+GET    /api/products
+GET    /api/products/{id}
+PUT    /api/products/{id}
+DELETE /api/products/{id}
+
+Learn:
+
+HTTP methods
+Status codes
+DTOs
+Request validation
+Day 10
+Global exception handling.
+
+Implement:
+
+@RestControllerAdvice
+
+Create:
+
+ProductNotFoundException
+InvalidProductException
+InsufficientInventoryException
+
+Day 11
+PostgreSQL + JPA.
+
+Learn:
+
+Entity
+Repository
+Persistence context
+Lazy vs eager loading
+Entity relationships
+Create:
+
+User
+Product
+Category
+Inventory
+Cart
+Order
+OrderItem
+Payment
+
+Day 12
+Advanced SQL.
+
+Practice:
+
+JOIN
+GROUP BY
+HAVING
+Subqueries
+CTE
+Window functions
+This is very important for Amazon OAs/backend interviews.
+
+Day 13
+Indexes.
+
+Learn:
+
+B-Tree
+Composite Index
+Covering Index
+Index Selectivity
+EXPLAIN ANALYZE
+
+Example:
+
+CREATE INDEX idx_product_category_price
+ON products(category_id, price);
+
+Day 14
+Build a product-search API.
+
+GET /products?
+category=electronics&
+minPrice=100&
+maxPrice=1000&
+sort=price&
+page=0&
+size=20
+
+DSA:
+
+Arrays + Hashing + Sorting
+
+Week 3 — Authentication & Security
+Day 15
+Spring Security fundamentals.
+
+Learn:
+
+Authentication
+Authorization
+Filter Chain
+SecurityContext
+
+Day 16
+JWT authentication.
+
+Implement:
+
+/register
+/login
+/refresh-token
+/logout
+
+Day 17
+Role-based access.
+
+Roles:
+
+CUSTOMER
+SELLER
+ADMIN
+WAREHOUSE_MANAGER
+
+Day 18
+Password security.
+
+Learn:
+
+BCrypt/Argon2
+Password hashing
+Authentication failures
+Account locking
+Day 19
+Security attacks.
+
+Understand:
+
+SQL Injection
+XSS
+CSRF
+CORS
+JWT attacks
+Broken authorization
+
+Day 20
+Rate limiting.
+
+Implement Redis-based:
+
+100 requests/minute/IP
+
+Understand:
+
+Token Bucket
+
+This connects directly to system design.
+
+Day 21
+Security testing + DSA review.
+
+Week 4 — Product + Inventory
+Now the project becomes interesting.
+
+Day 22
+Product catalog.
+
+Support:
+
+Product
+Brand
+Category
+Attributes
+Images
+Variants
+
+Day 23
+Inventory system.
+
+Example:
+
+SKU: IPHONE-15-BLK-128
+
+available = 100
+reserved = 10
+sold = 50
+
+Day 24
+Inventory reservation.
+
+When checkout begins:
+
+available → reserved
+
+Day 25
+Transactions.
+
+Learn:
+
+@Transactional
+
+Understand:
+
+Atomicity
+Rollback
+Isolation
+Propagation
+Day 26
+Concurrency.
+
+Simulate:
+
+User A buys last item
+User B buys last item
+
+Prevent overselling.
+
+Learn:
+
+Optimistic locking
+
+@Version
+private Long version;
+
+Day 27
+Pessimistic locking.
+
+Compare:
+
+Optimistic Lock
+vs
+Pessimistic Lock
+
+Know when each should be used.
+
+Day 28
+Load testing.
+
+Use:
+
+100 users
+1,000 requests
+10,000 requests
+
+Measure:
+
+Latency
+Throughput
+Error rate
+DB performance
+
+Month 2 — Redis + Kafka + Advanced Backend
+This is where you move from normal Spring Boot developer to someone who can discuss backend architecture.
+
+Week 5 — Redis
+Day 29
+Redis fundamentals.
+
+Learn:
+
+String
+Hash
+List
+Set
+Sorted Set
+TTL
+
+Day 30
+Caching.
+
+Implement:
+
+GET /products/{id}
+
+Flow:
+
+Request
+ ↓
+Redis
+ ↓ miss
+PostgreSQL
+ ↓
+Redis
+ ↓
+Response
+
+Day 31
+Cache strategies.
+
+Learn:
+
+Cache Aside
+Write Through
+Write Behind
+Read Through
+
+Day 32
+Cache invalidation.
+
+Example:
+
+Product updated
+     ↓
+DB update
+     ↓
+Redis invalidation
+
+Understand:
+
+Cache invalidation is one of the hardest practical distributed-system problems.
+
+Day 33
+Distributed locks.
+
+Implement a Redis-based lock for inventory operations.
+
+Understand:
+
+Why local synchronized doesn't work
+in distributed systems
+
+Day 34
+Redis rate limiter.
+
+Implement:
+
+Sliding Window
+
+Day 35
+Redis + DSA review.
+
+Week 6 — Kafka
+Day 36
+Kafka fundamentals.
+
+Learn:
+
+Producer
+Consumer
+Topic
+Partition
+Offset
+Consumer Group
+Broker
+
+Day 37
+Create events:
+
+OrderCreated
+PaymentCompleted
+InventoryReserved
+OrderShipped
+OrderCancelled
+
+Day 38
+Order workflow:
+
+Order Created
+      ↓
+Inventory Reserved
+      ↓
+Payment Processing
+      ↓
+Payment Successful
+      ↓
+Order Confirmed
+
+Day 39
+Failure handling.
+
+What if:
+
+Payment succeeds
+but
+Order update fails?
+
+Learn:
+
+Idempotency
+
+Day 40
+Retry mechanisms.
+
+Implement:
+
+Retry
+Exponential Backoff
+Dead Letter Topic
+
+Day 41
+Kafka ordering + partitions.
+
+Understand:
+
+Why Kafka doesn't guarantee global ordering.
+
+Day 42
+Build an event-driven notification system.
+
+OrderCreated
+     ↓
+Kafka
+     ↓
+Notification Service
+     ↓
+Email / WebSocket
+
+Week 7 — Order System
+Day 43
+Cart system.
+
+POST /cart/items
+DELETE /cart/items/{id}
+GET /cart
+
+Day 44
+Checkout.
+
+Design:
+
+Cart
+ ↓
+Price validation
+ ↓
+Inventory reservation
+ ↓
+Order creation
+
+Day 45
+Idempotency.
+
+Create:
+
+Idempotency-Key
+
+Prevent:
+
+Double payment
+Double order
+
+Day 46
+Order state machine.
+
+CREATED
+ ↓
+CONFIRMED
+ ↓
+PACKED
+ ↓
+SHIPPED
+ ↓
+DELIVERED
+
+Failure:
+
+CANCELLED
+
+Day 47
+Payment simulation.
+
+Don't integrate real payment initially.
+
+Create:
+
+PaymentService
+
+with:
+
+SUCCESS
+FAILED
+TIMEOUT
+
+Day 48
+Saga pattern.
+
+Understand:
+
+Distributed Transaction
+        ↓
+Saga
+
+Implement:
+
+Reserve Inventory
+ ↓
+Payment
+ ↓
+Confirm Order
+
+Compensation:
+
+Payment failed
+ ↓
+Release Inventory
+
+Day 49
+Order-system testing + DSA review.
+
+Week 8 — Search + Advanced SQL
+Day 50
+Elasticsearch/OpenSearch.
+
+Create product search.
+
+Support:
+
+iphone
+wireless headphones
+gaming laptop
+
+Day 51
+Search ranking.
+
+Understand:
+
+Tokenization
+Inverted Index
+TF-IDF/BM25
+
+Day 52
+Autocomplete.
+
+Implement:
+
+iph
+ ↓
+iphone
+iphone 15
+iphone charger
+
+Day 53
+Advanced PostgreSQL.
+
+Study:
+
+Transactions
+Isolation levels
+Locks
+Deadlocks
+MVCC
+
+Day 54
+Query optimization.
+
+Take a slow query.
+
+Use:
+
+EXPLAIN ANALYZE
+
+Optimize it.
+
+Day 55
+Database partitioning.
+
+Understand:
+
+Horizontal partitioning
+Vertical partitioning
+Sharding
+
+Day 56
+Database review + DSA.
+
+Month 3 — Production + AWS + System Design + React
+Now you'll turn the project into something you can actually discuss in interviews.
+
+Week 9 — React
+Day 57
+React + TypeScript setup.
+
+Create:
+
+Login
+Products
+Product Details
+Cart
+Checkout
+Orders
+Admin
+
+Day 58
+React state management.
+
+Learn:
+
+useState
+useEffect
+useMemo
+useCallback
+Context
+
+Day 59
+API integration.
+
+React:
+
+axios/fetch
+
+Backend:
+
+REST APIs
+
+Day 60
+Authentication.
+
+Implement:
+
+Login
+JWT
+Protected Routes
+Role-based UI
+
+Day 61
+Product search UI.
+
+Implement:
+
+Search
+Filters
+Sorting
+Pagination
+
+Day 62
+Real-time order tracking.
+
+Use:
+
+WebSocket
+
+Show:
+
+Order Confirmed
+       ↓
+Packed
+       ↓
+Shipped
+       ↓
+Delivered
+
+live.
+
+Day 63
+React performance.
+
+Learn:
+
+Memoization
+Code splitting
+Lazy loading
+Virtualization
+
+Week 10 — Testing
+Day 64
+JUnit.
+
+Test:
+
+ProductService
+InventoryService
+OrderService
+
+Day 65
+Mockito.
+
+Mock:
+
+Repository
+Redis
+Kafka
+Payment
+
+Day 66
+Integration tests.
+
+Use:
+
+Spring Boot Test
+Testcontainers
+PostgreSQL
+Redis
+Kafka
+
+Day 67
+Test concurrency.
+
+Create 100 simultaneous requests for the last inventory item.
+
+Expected:
+
+Only one succeeds
+
+This is a very good interview talking point.
+
+Day 68
+API testing.
+
+Test:
+
+Authentication
+Authorization
+Validation
+Error responses
+
+Day 69
+Load testing.
+
+Use:
+
+k6 / JMeter
+
+Measure:
+
+p50
+p95
+p99
+
+Day 70
+Fix bottlenecks.
+
+Week 11 — AWS + Production
+Day 71
+Dockerize backend.
+
+FROM eclipse-temurin:21
+
+Day 72
+Docker Compose:
+
+Backend
+PostgreSQL
+Redis
+Kafka
+Elasticsearch
+Frontend
+
+One command:
+
+docker compose up
+
+Day 73
+AWS fundamentals.
+
+Learn:
+
+EC2
+S3
+RDS
+ElastiCache
+CloudWatch
+IAM
+VPC
+
+Day 74
+Deploy backend.
+
+React
+   ↓
+AWS
+   ↓
+Spring Boot
+   ↓
+PostgreSQL
+
+Day 75
+CI/CD.
+
+GitHub Actions:
+
+git push
+ ↓
+Build
+ ↓
+Test
+ ↓
+Docker
+ ↓
+Deploy
+
+Day 76
+Monitoring.
+
+Implement:
+
+Spring Actuator
+Micrometer
+CloudWatch
+
+Monitor:
+
+CPU
+Memory
+Requests
+Errors
+Latency
+
+Day 77
+Logging.
+
+Learn:
+
+Structured Logging
+Correlation ID
+Request ID
+
+Week 12 — Amazon Interview Preparation
+This week is extremely important.
+
+You're no longer adding random features.
+
+You're converting your project into interview knowledge.
+
+Day 78 — System Design
+Design:
+
+Amazon-like Order System
+
+Discuss:
+
+10M users
+1M orders/day
+100K requests/sec
+
+Day 79 — System Design
+Design:
+
+Product Search
+
+Discuss:
+
+PostgreSQL
+Redis
+Elasticsearch
+Kafka
+
+Day 80 — System Design
+Design:
+
+Inventory Reservation
+
+Discuss:
+
+Concurrency
+Locks
+Transactions
+Race Conditions
+
+Day 81 — System Design
+Design:
+
+Payment System
+
+Discuss:
+
+Idempotency
+Retries
+Timeouts
+Saga
+Consistency
+
+Day 82 — System Design
+Design:
+
+Notification System
+
+Order
+ ↓
+Kafka
+ ↓
+Notification Service
+ ↓
+Email/SMS/WebSocket
+
+Day 83 — Java Interview
+Master:
+
+HashMap
+HashSet
+ArrayList
+LinkedList
+PriorityQueue
+ConcurrentHashMap
+ThreadPoolExecutor
+CompletableFuture
+
+Day 84 — Spring Boot Interview
+Master:
+
+Dependency Injection
+Bean lifecycle
+Scopes
+Filters
+Interceptors
+AOP
+Transactions
+JPA
+Hibernate
+Lazy loading
+N+1
+
+Day 85 — Database Interview
+Master:
+
+Indexes
+Joins
+Transactions
+ACID
+Isolation
+Locks
+Deadlocks
+Normalization
+Denormalization
+Sharding
+Replication
+
+Day 86 — Distributed Systems
+Master:
+
+CAP
+Consistency
+Availability
+Partition tolerance
+Eventual consistency
+Idempotency
+Kafka
+Redis
+Distributed locks
+Retries
+Circuit breakers
+
+Day 87 — Amazon-style OA Simulation
+90 minutes
+
+Do:
+
+2 DSA problems
+1 SQL problem
+10–15 Java questions
+10–15 CS fundamentals questions
+No Google.
+
+No ChatGPT.
+
+No IDE autocomplete.
+
+Day 88 — Full Backend Interview
+You should be able to explain:
+
+"Design the order system."
+
+for 45 minutes.
+
+Day 89 — Full Coding Interview
+Solve:
+
+1 Easy
+2 Medium
+1 Hard
+within:
+
+120 minutes.
+
+Day 90 — Final Architecture Presentation
+Present your entire project as if you are interviewing at Amazon.
+
+You should be able to explain:
+
+                    React
+                      │
+                      ▼
+                API Gateway
+                      │
+                      ▼
+              Spring Boot API
+                      │
+        ┌─────────────┼─────────────┐
+        ▼             ▼             ▼
+      Redis        PostgreSQL     Kafka
+        │             │             │
+        │             │        ┌────┴────┐
+        │             │        ▼         ▼
+        │             │   Notification  Analytics
+        │             │
+        │             ▼
+        │          Orders
+        │          Products
+        │          Inventory
+        │          Payments
+        │
+        ▼
+   Cache / Locks
+
+What you should be able to answer after 90 days
+If someone asks:
+
+"Why Redis?"
+
+You answer.
+
+"Why Kafka?"
+
+You answer.
+
+"Why PostgreSQL?"
+
+You answer.
+
+"How do you prevent overselling?"
+
+You answer.
+
+"What happens if payment succeeds but the order update fails?"
+
+You answer.
+
+"How do you prevent duplicate orders?"
+
+You answer.
+
+"What happens if Kafka consumer crashes?"
+
+You answer.
+
+"How would you scale this to 10 million users?"
+
+You answer.
+
+"Where would you put a cache?"
+
+You answer.
+
+"What happens when Redis goes down?"
+
+You answer.
+
+"How do you detect a slow SQL query?"
+
+You answer.
+
+"Optimistic vs pessimistic locking?"
+
+You answer.
+
+"How does @Transactional actually work?"
+
+You answer.
+
+"How does HashMap work internally?"
+
+You answer.
+
+"Why is ConcurrentHashMap different from HashMap?"
+
+You answer.
+
+"How does Spring dependency injection work?"
+
+You answer.
+
+"Explain the complete request flow from React to PostgreSQL."
+
+You answer.
+
+The important part: combine this with your DSA plan
+Don't do:
+
+3 DSA problems OR project.
+
+Do both.
+
+Your daily routine should look roughly like:
+
+Monday–Friday
+2–3 hours
+
+60–90 min → DSA
+90–120 min → Project
+15 min → revise yesterday
+Saturday
+4–5 hours
+
+DSA contest/mock
+Project feature
+Debugging
+SQL practice
+Sunday
+3–4 hours
+
+Weekly project review
+Rebuild something without looking at code
+3–5 DSA revision problems
+System-design notes
+Your final resume project
+Don't write:
+
+E-commerce Website — React + Spring Boot
+
+That sounds like a beginner project.
+
+Instead, your project should eventually be presented more like:
+
+ShopFlow — Distributed Order & Inventory Platform
+Built a production-oriented e-commerce platform using Java 21, Spring Boot, PostgreSQL, Redis, Kafka, Elasticsearch and React. Implemented concurrency-safe inventory reservation using optimistic locking, idempotent order/payment workflows, Redis caching and rate limiting, Kafka-based asynchronous processing, Elasticsearch product search, JWT/RBAC security, WebSocket order tracking, integration testing with Testcontainers, Dockerized deployment and AWS monitoring.
+
+That's a much stronger interview story.
+
+And the real benefit is that the project forces you to learn the same areas that make Amazon-style OA + backend interviews much easier: DSA, Java, SQL, concurrency, Spring Boot, distributed systems, caching, messaging, and system design.
