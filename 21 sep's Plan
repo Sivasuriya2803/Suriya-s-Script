@@ -1,0 +1,126 @@
+The Big Picture
+Now connect all seven patterns.
+
+Pattern	Main idea	Typical complexity
+Array Traversal	Visit every element	O(n)
+Two Pointers	Move two indices strategically	O(n)
+Sliding Window	Maintain a contiguous window	O(n)
+Prefix Sum	Precompute cumulative sums	O(n) build
+Kadane	Best contiguous sum	O(n)
+In-Place	Modify without extra array	O(n)
+Intervals	Sort + merge/scan ranges	O(n log n)
+
+How to Recognize Them in Problems
+Here's the cheat sheet I'd memorize:
+
+"Visit every element"
+        ↓
+Array Traversal
+
+"Sorted array + pair"
+"Palindrome"
+"Two ends"
+"Remove duplicates"
+        ↓
+Two Pointers
+
+"Subarray / substring"
+"Contiguous"
+"Longest / shortest"
+"Window of size k"
+"At most k"
+        ↓
+Sliding Window
+
+"Range sum"
+"Sum from L to R"
+"Many sum queries"
+        ↓
+Prefix Sum
+
+"Maximum sum contiguous subarray"
+        ↓
+Kadane
+
+"Modify array"
+"O(1) extra space"
+"Remove/move/rearrange"
+        ↓
+In-Place / Read-Write Pointers
+
+"Intervals"
+"Meetings"
+"Start/end"
+"Overlap"
+"Merge"
+        ↓
+Sort + Interval Scan
+
+One Important Distinction
+Students often confuse sliding window, prefix sum, and Kadane because all three can involve subarrays.
+
+Think of them like this:
+
+Sliding Window
+You're maintaining a window:
+
+[ 2  3  1  2 ]
+  ↑        ↑
+ left     right
+
+Usually useful when the window has some constraint.
+
+Prefix Sum
+You're asking:
+
+"What is the sum between these two positions?"
+
+prefix[right + 1] - prefix[left]
+
+Kadane
+You're asking:
+
+"Which contiguous subarray has the maximum sum?"
+
+currentSum = Math.max(nums[i],
+                      currentSum + nums[i]);
+
+A Good Learning Order
+Don't just memorize code. Practice in this progression:
+
+Level 1
+1. Find max
+2. Find min
+3. Reverse array
+4. Count elements
+5. Linear search
+
+Level 2 — Two Pointers
+6. Two Sum II
+7. Valid Palindrome
+8. Remove Duplicates
+9. Move Zeroes
+10. Container With Most Water
+
+Level 3 — Sliding Window
+11. Maximum sum subarray of size K
+12. Minimum Size Subarray Sum
+13. Longest Substring Without Repeating Characters
+14. Longest Repeating Character Replacement
+
+Level 4 — Prefix Sum
+15. Range Sum Query
+16. Running Sum
+17. Subarray Sum Equals K
+18. Continuous Subarray Sum
+
+Level 5 — Kadane
+19. Maximum Subarray
+20. Maximum Circular Subarray
+
+Level 6 — Intervals
+21. Merge Intervals
+22. Insert Interval
+23. Non-overlapping Intervals
+24. Meeting Rooms
+25. Meeting Rooms II
