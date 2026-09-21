@@ -1,0 +1,137 @@
+**************************BASIC ARRAY AND TWO POINTER*************************************** 
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[]={0, 0, 1, 1, 1, 2, 2, 3};
+        //findMin(arr);
+        //reverse(arr);
+        //count(arr);
+        //System.out.println(linearSearch(arr,1));
+        // System.out.println(Arrays.toString(twoSum(arr,12)));
+        //System.out.println(palindrome("A man, a plan, a canal: Panama"));
+       //removeDuplicate(arr);
+        //System.out.println(Arrays.toString(moveZeros(arr)));
+    
+    }
+
+    public static int[] moveZeros(int arr[]){
+        int index=0;
+        for(int i:arr){
+            if(i!=0){
+                arr[index]=i;
+                index++;
+            }
+        }
+        for(int i=index;i<arr.length;i++){
+            arr[i]=0;
+        }
+        return arr;
+    }
+
+
+
+    
+public static void removeDuplicate(int arr[]) {
+    if (arr.length == 0) {
+        return;
+    }
+    int index=0;
+    for(int i=1;i<arr.length;i++){
+        if(arr[i]!=arr[i-1]){
+            arr[++index]=arr[i];
+        }
+    }
+    for(int i=0;i<=index;i++){
+        System.out.print(arr[i]+ " ");
+    }
+
+}
+
+    public static boolean palindrome(String s){
+        int left=0;
+        int right=s.length()-1;
+        while(left<right){
+            while(left<right&&!Character.isLetter(s.charAt(left))){
+                left++;
+            }
+            while(left<right&&!Character.isLetter(s.charAt(right))){
+                right--;
+            }
+
+            if(Character.toLowerCase(s.charAt(left))!=Character.toLowerCase(s.charAt(right))){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static int[] twoSum(int arr[],int target){
+        int left=0;
+        int right=arr.length -1;
+        while(left<right){
+            int temp=arr[left]+arr[right];
+            if(temp==target){
+                return new int[]{left+1,right+1};
+            }
+            if(temp<target){
+                left++;
+            }else{
+                right--;
+            }
+            
+        }
+        return new int[]{-1,-1};
+    }
+    public static void findMax(){
+            int arr[]={13, 7, 2, 9, 1};
+        int max=Integer.MIN_VALUE;
+        for(int i:arr){
+            if(i>max){
+                max=i;
+            }
+        }
+        System.out.println(max);
+    }
+    public static void findMin(int arr[]){
+        int min=Integer.MAX_VALUE;
+        for(int i:arr){
+            if(i<min){
+                min=i;
+            }
+        }
+        System.out.println(min);    
+    }
+    public static void reverse(int arr[]){
+        int left=0;
+        int right=arr.length -1;
+        while(left<right){
+            int temp=arr[left];
+            arr[left]=arr[right];
+            arr[right]=temp;
+            left++;
+            right--;
+        }
+        for(int i:arr){
+            System.out.print(i + " ");
+        }
+    }
+    public static void count(int arr[]){
+        int count=0;
+        for(int i:arr){
+            count++;
+        }
+        System.out.println(count);
+    }
+    public static int linearSearch(int arr[],int target){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==target){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+}
