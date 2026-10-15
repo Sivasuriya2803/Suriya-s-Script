@@ -1,0 +1,173 @@
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+enum RunStatus {
+    COMPLETE,
+    INCOMPLETE
+}
+
+class WorkoutRun {
+    private final String memberId;
+    private final double timeSeconds;
+    private final RunStatus status;
+
+    public WorkoutRun(String memberId, double timeSeconds,
+                      RunStatus status) {
+        this.memberId = memberId;
+        this.timeSeconds = timeSeconds;
+        this.status = status;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public double getTimeSeconds() {
+        return timeSeconds;
+    }
+
+    public RunStatus getStatus() {
+        return status;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof WorkoutRun)) return false;
+
+        WorkoutRun other = (WorkoutRun) obj;
+
+        return Objects.equals(memberId, other.memberId)
+                && Double.compare(timeSeconds,
+                                  other.timeSeconds) == 0
+                && status == other.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberId, timeSeconds, status);
+    }
+}
+
+class WorkoutTracker {
+
+    private final List<WorkoutRun> runs = new ArrayList<>();
+
+    public void addRun(WorkoutRun run) {
+        if (run != null) {
+            runs.add(run);
+        }
+    }
+
+    // Returns members who have at least one complete run.
+    public List<String> getMembersWithCompleteRuns() {
+        return runs.stream()
+                .filter(r -> r.getStatus() == RunStatus.COMPLETE)
+                .map(WorkoutRun::getMemberId)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    // Part A: Return the fastest complete run.
+    // Return -1.0 if no complete run exists.
+    public double getPersonalBest(String memberId) {
+        double best = Double.MAX_VALUE;
+        boolean found = false;
+
+        for (WorkoutRun run : runs) {
+            if (Objects.equals(run.getMemberId(), memberId)
+                    && run.getStatus() == RunStatus.COMPLETE) {
+                if (run.getTimeSeconds() < best) {
+                    best = run.getTimeSeconds();
+                    found = true;
+                }
+            }
+        }
+
+        return found ? best : -1.0;
+    }
+
+    // Part B: Average time across all complete runs.
+    // Return -1.0 if no complete run exists.
+    public double getAverageTime(String memberId) {
+        double total = 0.0;
+        int count = 0;
+
+        for (WorkoutRun run : runs) {
+            if (Objects.equals(run.getMemberId(), memberId)
+                    && run.getStatus() == RunStatus.COMPLETE) {
+                total += run.getTimeSeconds();
+                count++;
+            }
+        }
+
+        return count == 0 ? -1.0 : total / count;
+    }
+
+    // Part C: Percentage improvement between the first
+    // and last complete runs in insertion order.
+    // Return -1.0 if fewer than two complete runs exist.
+    public double getImprovementRate(String memberId) {
+        double first = 0.0;
+        double last = 0.0;
+        int count = 0;
+
+        for (WorkoutRun run : runs) {
+            if (Objects.equals(run.getMemberId(), memberId)
+                    && run.getStatus() == RunStatus.COMPLETE) {
+
+                if (count == 0) {
+                    first = run.getTimeSeconds();
+                }
+
+                last = run.getTimeSeconds();
+                count++;
+            }
+        }
+
+        if (count < 2 || first == 0.0) {
+            return -1.0;
+        }
+
+        return ((first - last) / first) * 100.0;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        WorkoutTracker t = new WorkoutTracker();
+
+        t.addRun(new WorkoutRun("alice", 120.0,
+                                RunStatus.COMPLETE));
+        t.addRun(new WorkoutRun("alice", 90.0,
+                                RunStatus.INCOMPLETE));
+        t.addRun(new WorkoutRun("alice", 100.0,
+                                RunStatus.COMPLETE));
+        t.addRun(new WorkoutRun("alice", 108.0,
+                                RunStatus.COMPLETE));
+        t.addRun(new WorkoutRun("bob", 200.0,
+                                RunStatus.INCOMPLETE));
+        t.addRun(new WorkoutRun("carol", 150.0,
+                                RunStatus.COMPLETE));
+
+        System.out.println(
+                "Members: " + t.getMembersWithCompleteRuns());
+
+        System.out.println(
+                "Alice personal best: "
+                        + t.getPersonalBest("alice"));
+
+        System.out.println(
+                "Alice average time: "
+                        + t.getAverageTime("alice"));
+
+        System.out.println(
+                "Alice improvement rate: "
+                        + t.getImprovementRate("alice"));
+
+        System.out.println(
+                "Bob average time: "
+                        + t.getAverageTime("bob"));
+    }
+}
