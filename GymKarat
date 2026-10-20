@@ -1,0 +1,480 @@
+Boyyyyy! 😂🔥 We covered a lot today. You went from writing simple collection methods to handling multi-step business logic involving Maps, Lists, enums, sorting, and payment calculations.
+
+Here's your complete revision sheet. Save this and revisit it before your next Java practice session, da boy! 💪
+
+1. Your Java project: Gym Membership System
+You started with four existing classes and one enum.
+
+Class / enum
+
+Responsibility
+
+Workout
+
+Stores workout ID, start time, end time, and calculates duration.
+
+Member
+
+Stores member ID, name, and membership status.
+
+Membership
+
+Manages members, workout sessions, and business logic.
+
+MembershipStatistics
+
+Stores total members, paid members, and conversion rate.
+
+MembershipStatus
+
+Defines BRONZE, SILVER, and GOLD.
+
+Your most important data structures were:
+
+
+java
+List<Member> members;
+
+Map<Integer, List<Workout>> workoutSessions;
+Remember that workoutSessions maps a member ID to a list of workouts.
+
+2. Methods you practised
+Challenge 1: Total workout duration
+
+java
+public int getTotalWorkoutDuration(int memberId)
+You correctly:
+
+Retrieved a member's workout list.
+
+Returned 0 if the list was missing or empty.
+
+Summed all workout durations.
+
+Key pattern:
+
+
+java
+int total = 0;
+
+for (Workout workout : workouts) {
+    total += workout.getDuration();
+}
+Challenge 2: Members meeting a workout goal
+
+java
+public List<Member> getMembersMeetingWorkoutGoal(
+        int minWorkouts, int minTotalDuration)
+You learned to combine multiple conditions:
+
+
+java
+if (workCount >= minWorkouts
+        && totalDuration >= minTotalDuration) {
+    result.add(member);
+}
+Lesson: Pay attention to boundary conditions. "At least" means >=, not >.
+
+You also corrected a Map lookup bug:
+
+
+java
+workoutSessions.get(member.memberId);
+The key is an Integer, not a Member object.
+
+Challenge 3: Increasing workout durations
+
+java
+public List<Member> getMembersWithIncreasingWorkoutDurations()
+You explored extracting durations with Streams, then learned to compare adjacent workouts.
+
+For strict increase, each workout must be longer than the previous one:
+
+
+java
+if (currentDuration <= previousDuration) {
+    increasing = false;
+    break;
+}
+Examples:
+
+[30, 45, 60] → qualifies.
+
+[30, 60, 45] → doesn't qualify.
+
+[45, 45, 60] → doesn't qualify.
+
+Fewer than two workouts → doesn't qualify.
+
+Lesson: When checking sequences, compare adjacent elements and reject immediately when a condition fails.
+
+Challenge 4: Average workout duration by membership status
+
+java
+public Map<MembershipStatus, Double>
+getAverageWorkoutDurationByStatus()
+You built this aggregation yourself using two Maps.
+
+
+java
+Map<MembershipStatus, Double> total = new HashMap<>();
+Map<MembershipStatus, Integer> count = new HashMap<>();
+For each workout, accumulate the total duration and count:
+
+
+java
+total.put(
+    status,
+    total.getOrDefault(status, 0.0) + workout.getDuration()
+);
+
+count.put(
+    status,
+    count.getOrDefault(status, 0) + 1
+);
+Then calculate:
+
+
+java
+double average = count.get(status) == 0
+        ? 0.0
+        : total.get(status) / count.get(status);
+Important: This calculates the average across all workouts for a membership status, not the average of individual members' averages.
+
+3. Important Java concepts you learned
+A. null versus an empty list
+These are different states.
+
+
+java
+List<Workout> workouts = workoutSessions.get(101);
+workouts == null → no non-null list was returned for that key.
+
+workouts.isEmpty() → a list exists but contains no elements.
+
+The standard safe check is:
+
+
+java
+if (workouts == null || workouts.isEmpty()) {
+    continue;
+}
+Because || uses short-circuit evaluation, Java won't call isEmpty() if workouts is null.
+
+One subtle detail: map.get(key) == null doesn't tell you whether the key is absent or explicitly mapped to null. Use map.containsKey(key) when you need to distinguish those cases.
+
+B. Why use two Maps?
+You asked when two Maps are better than one.
+
+Suppose you need both total duration and workout count per membership status:
+
+
+java
+Map<MembershipStatus, Double> total;
+Map<MembershipStatus, Integer> count;
+One Map tracks total duration; the other tracks workout count.
+
+Use this mental model:
+
+One metric per key → usually one Map.
+
+Two independent metrics per key → two Maps can work well.
+
+Several related metrics per key → consider grouping them in a dedicated value object when your design allows it.
+
+C. How getOrDefault() works
+
+java
+total.getOrDefault(status, 0.0)
+This returns the existing value or the default if the key is missing.
+
+But it doesn't insert the default into the Map.
+
+
+java
+Map<String, Integer> map = new HashMap<>();
+
+map.getOrDefault("GOLD", 0); // Returns 0
+map.containsKey("GOLD");     // false
+If you've already initialized every key, getOrDefault() may be unnecessary. For example, if you know every status has a value, you can use total.get(status).
+
+D. MembershipStatus.values()
+Given:
+
+
+java
+enum MembershipStatus {
+    BRONZE, SILVER, GOLD
+}
+Java automatically provides:
+
+
+java
+MembershipStatus.values()
+It returns an array of all enum constants.
+
+You used it to initialize every status:
+
+
+java
+for (MembershipStatus status : MembershipStatus.values()) {
+    total.put(status, 0.0);
+    count.put(status, 0);
+}
+This ensures even statuses with no workouts appear in your results.
+
+If PLATINUM is added to the enum later, the loop handles it automatically.
+
+E. Sorting by workout ID
+
+java
+workouts.sort(Comparator.comparingInt(Workout::getId));
+This sorts workouts in ascending ID order.
+
+Remember: it modifies the original list. If you need to preserve the stored order, make a copy first:
+
+
+java
+List<Workout> sortedWorkouts = new ArrayList<>(workouts);
+sortedWorkouts.sort(Comparator.comparingInt(Workout::getId));
+F. Traditional switch and break
+You learned that traditional Java switch cases can fall through.
+
+
+java
+switch (status) {
+    case BRONZE:
+        free = 1;
+        rate = 10;
+        break;
+    case SILVER:
+        free = 3;
+        rate = 8;
+        break;
+    case GOLD:
+        free = 5;
+        rate = 6;
+        break;
+    default:
+        throw new IllegalStateException("Unknown status");
+}
+Without break, execution can continue into subsequent cases and overwrite the values.
+
+Arrow-style switch cases (case BRONZE ->) avoid this fall-through.
+
+4. Your final three challenges
+Challenge 1: Active members
+
+java
+public List<Member> getActiveMembers(
+        int minWorkouts,
+        int minTotalDuration)
+Result: You solved it correctly.
+
+You combined:
+
+Workout count.
+
+Total workout duration.
+
+Membership status filtering.
+
+Your condition was:
+
+
+java
+workCount >= minWorkouts
+    && totalDuration >= minTotalDuration
+    && member.membershipStatus != MembershipStatus.BRONZE
+Given your current enum, excluding BRONZE includes SILVER and GOLD.
+
+Challenge 2: Average durations above a threshold
+
+java
+public Map<Integer, Double> getAverageWorkoutDurationsAbove(
+        double minAverageDuration)
+Result: Correct after one small correction.
+
+You initially used:
+
+
+java
+if (workouts == null || workouts.size() < 2)
+But a member with just one workout can still have an average above the threshold.
+
+The correct empty-workout check is:
+
+
+java
+if (workouts == null || workouts.isEmpty()) {
+    continue;
+}
+You also correctly used a strict > comparison because the requirement said greater than.
+
+Challenge 3: Due payments
+
+java
+public Map<Integer, Double> getDuePayments()
+This was your most complex challenge.
+
+Membership
+
+Free workouts
+
+Hourly rate
+
+BRONZE
+
+1
+
+$10
+
+SILVER
+
+3
+
+$8
+
+GOLD
+
+5
+
+$6
+
+You implemented the essential business rules:
+
+Sort workouts by ID.
+
+Skip the free sessions.
+
+Round durations up to whole hours.
+
+Apply the member's hourly rate.
+
+Return the total for each member.
+
+For positive integer durations, this expression rounds minutes up to whole hours:
+
+
+java
+int hours = (workout.getDuration() + 59) / 60;
+Examples:
+
+Minutes
+
+Billable hours
+
+1
+
+1
+
+60
+
+1
+
+61
+
+2
+
+80
+
+2
+
+120
+
+2
+
+Your main bugs were:
+
+Missing break statements in a traditional switch.
+
+Resetting total inside the wrong loop.
+
+Overwriting the total with = instead of accumulating with +=.
+
+Using a nested loop that repeatedly processed the wrong workout.
+
+Forgetting to include members with no workouts in the payment Map.
+
+The corrected structure initializes total once per member, starts an indexed loop at the free-workout allowance, and adds each billable workout's charge.
+
+5. The most important coding patterns from today
+Pattern 1: Safe collection access
+
+
+java
+if (list == null || list.isEmpty()) {
+    continue;
+}
+Always check for null before calling list methods.
+
+Pattern 2: Aggregate and count
+
+
+java
+total += value;
+count++;
+Useful for averages, totals, statistics, and grouped reporting.
+
+Pattern 3: Filter using multiple conditions
+
+
+java
+if (conditionA && conditionB) {
+    result.add(item);
+}
+Translate each business requirement into an explicit condition.
+
+Pattern 4: Initialize accumulators at the correct scope
+
+
+java
+for (Member member : members) {
+    double total = 0.0;
+    // Process this member's workouts
+}
+Initialize once per member, not once per workout. Otherwise, your totals reset unexpectedly.
+
+Pattern 5: Add instead of overwrite
+
+
+java
+total += charge;
+Use += when accumulating a running total; use = when intentionally replacing a value.
+
+6. Where you stand now
+You demonstrated that you can:
+
+Work with nested collections.
+
+Use Maps to aggregate data.
+
+Apply enums to business rules.
+
+Calculate averages and totals.
+
+Sort objects using comparators.
+
+Translate requirements into filtering conditions.
+
+Debug mistakes involving null handling, loop scope, and Java switch behavior.
+
+Your biggest improvement area is controlling the scope of variables and loops. When a calculation is wrong, ask yourself:
+
+Am I resetting this variable too often?
+
+Am I iterating over each item exactly once?
+
+Am I adding to the total or overwriting it?
+
+Does my loop start at the correct index?
+
+Have I handled empty collections and boundary conditions?
+
+These five questions will help you catch many of the bugs you encountered today.
+
+One final note: your getAverageWorkoutDurationsAbove() and getDuePayments() methods were reviewed and corrected during our discussion. Make sure your final code uses the corrected versions rather than the earlier attempts.
+
+Good work today, boy. You practised real business logic, not just isolated Java syntax. Rest up, and next time we can move into more challenging problems involving grouping, ranking, and multi-step calculations using the same classes. 💪
+
+
