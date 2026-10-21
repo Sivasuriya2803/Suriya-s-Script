@@ -1,0 +1,80 @@
+Technical Question: 20-July-2026
+
+Relationship between HashCode() and Equals()
+When does object promotion happen in the heap
+What is dependency injection and how does it solve complex problems in your application
+What system design concepts would you use to make your application more testable
+
+Bug finding
+
+Public interface Vehicle {  
+int getMileage();
+int getPrice();
+int getAPriceWhenNew();
+}
+class CarDealer {
+double Factor =0.01;
+
+if(vehicle instanceof Truck){
+mileage /=2.0;
+
+}
+
+Technical Question - 10 min
+Coding Part - 40 min
+Any question - 5 min
+
+Technical Question
+
+Relationship between HashCode() and Equals()
+What system design concepts would you use to make your application more testable
+What is dependency injection and how does it solve complex problems in your application
+When does object promotion happen in the heap
+
+Find the system design defect in the example below.
+interface Vehicle {  
+int getMileage();
+int getPrice();
+int getAPriceWhenNew();
+}
+class Main implements Vehicle{
+/
+} 
+
+
+
+1)What is the relationship between HashCode() and Equals() in java ?
+2)What system design concepts would you use to make your application more testable
+3)What is dependency injection and how does it solve complex problems in your application ?
+4)When does object promotion happen in the heap?
+
+
+
+Overall timing:
+Intro - 5 min
+Technical Question - 10 min
+Coding Part - 40 min
+Any question - 5 min
+
+Concept Question
+Should keys in a Map be mutable? Why or why not?
+What are the advantages and disadvantages of using checked exceptions?
+What is effectively final in Java? Advantages and Disadvantages
+What are upper bound and lower bound wildcards in Generics? Advantages and disadvantages.
+style or logic problem in the code:
+public static boolean isInvalid(Boolean value){
+if(value.equals(Boolean.FALSE){
+  return true;
+ }
+else{
+ return false
+}
+}
+
+
+
+1)Equals() and hashcode()
+2)Dependency Injection and design priciples
+3)Deisgn priciples can be followed to make code testable 
+4) Issue with code - Inteface Vechicle and class -- Segregate interface methods and arithmatic error
+5) Why java objects are probagted to heap memory
